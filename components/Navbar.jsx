@@ -37,7 +37,7 @@ const Navbar = () => {
                             <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b md:border-none select-none"><Link href="/gallery">Gallery</Link></li>
                             <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b md:border-none cursor-pointer select-none" onClick={scrollToFoot}>Contact</li>
                             <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b md:border-none cursor-pointer select-none" onClick={scrollToFoot}>FAQ</li>
-                            <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b md:border-none select-none md:rounded md:bg-[#151522] md:text-white"><Link href="/Login">Login</Link></li>
+                            <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] md:border-none select-none md:rounded md:bg-[#151522] md:text-white"><Link href="/Login">Login</Link></li>
                         </ul>
 
                     
