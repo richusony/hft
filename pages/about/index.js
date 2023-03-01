@@ -60,7 +60,7 @@ const about = () => {
                 </p>
             </div>
 
-            <div className='bg-[#ff6600] text-center py-20'>
+            <div className='bg-[#ff6600] text-center py-20 px-5'>
                 <h2 className='text-3xl text-white h-20 mx-auto leading-10 tracking-wide mb-10 font-medium'>Take action by partnering<br/>
                     with us today</h2>
 
