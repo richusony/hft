@@ -60,8 +60,8 @@ const about = () => {
                 </p>
             </div>
 
-            <div className='bg-[#ff6600] text-center py-20 px-5'>
-                <h2 className='text-3xl text-white h-20 mx-auto leading-10 tracking-wide mb-10 font-medium'>Take action by partnering<br/>
+            <div className='bg-[#ff6600] text-center py-20'>
+                <h2 className='text-3xl text-white h-20 mx-auto tracking-wide mb-20 font-medium px-2'>Take action by partnering<br/>
                     with us today</h2>
 
                     <Link href='/donate' className='text-[#ff6600] px-5 py-3 bg-white font-medium hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</Link>
