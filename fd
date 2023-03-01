@@ -1,0 +1,193 @@
+[33mcommit 99c60ba0c8381c177b67a358b4a6da05ab44f0de[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Richu Sony <sonyrichu4@gmail.com>
+Date:   Thu Feb 9 01:30:07 2023 +0530
+
+    first commit
+
+[1mdiff --git a/assets/bg1.jpg b/assets/bg1.jpg[m
+[1mnew file mode 100644[m
+[1mindex 0000000..608d0a1[m
+Binary files /dev/null and b/assets/bg1.jpg differ
+[1mdiff --git a/assets/broken-heart.png b/assets/broken-heart.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..222cff7[m
+Binary files /dev/null and b/assets/broken-heart.png differ
+[1mdiff --git a/assets/child-labour.png b/assets/child-labour.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..f31232d[m
+Binary files /dev/null and b/assets/child-labour.png differ
+[1mdiff --git a/assets/close.png b/assets/close.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..636110c[m
+Binary files /dev/null and b/assets/close.png differ
+[1mdiff --git a/assets/hero-bg.webp b/assets/hero-bg.webp[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c3574b7[m
+Binary files /dev/null and b/assets/hero-bg.webp differ
+[1mdiff --git a/assets/menu.png b/assets/menu.png[m
+[1mnew file mode 100644[m
+[1mindex 0000000..03dd560[m
+Binary files /dev/null and b/assets/menu.png differ
+[1mdiff --git a/components/Footer.jsx b/components/Footer.jsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3899e1c[m
+[1m--- /dev/null[m
+[1m+++ b/components/Footer.jsx[m
+[36m@@ -0,0 +1,11 @@[m
+[32m+[m[32mconst Footer = () =>{[m
+[32m+[m[32m    return([m
+[32m+[m[32m        <>[m
+[32m+[m[32m        <div className="bg-black align-middle">[m[41m [m
+[32m+[m[32m            <h2 className="text-white py-4 text-center">Developed by ?</h2>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m        </>[m
+[32m+[m[32m    )[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mexport default Footer;[m
+\ No newline at end of file[m
+[1mdiff --git a/components/Layout.jsx b/components/Layout.jsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ced79cd[m
+[1m--- /dev/null[m
+[1m+++ b/components/Layout.jsx[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m
+[32m+[m[32mimport Footer from './footer'[m
+[32m+[m[32mimport Navbar from './Navbar'[m
+[32m+[m
+[32m+[m[32mexport default function Layout({ children }) {[m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <>[m
+[32m+[m[32m      <Navbar />[m
+[32m+[m[32m      <main>{children}</main>[m
+[32m+[m[32m      <Footer />[m
+[32m+[m[32m    </>[m
+[32m+[m[32m  )[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/components/Map/Map.jsx b/components/Map/Map.jsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2bbf9da[m
+[1m--- /dev/null[m
+[1m+++ b/components/Map/Map.jsx[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32mimport { MapContainer, TileLayer,Marker,Popup } from 'react-leaflet'[m
+[32m+[m[32mimport 'leaflet/dist/leaflet.css'[m
+[32m+[m[32mimport 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'[m
+[32m+[m[32mimport "leaflet-defaulticon-compatibility";[m
+[32m+[m
+[32m+[m[32mconst Map = () => {[m
+[32m+[m[32m  const cent=[12.859324, 74.846866][m
+[32m+[m[32m  return ([m
+[32m+[m[32m    <MapContainer center={cent} zoom={14} scrollWheelZoom={false} style={{height: "90%", width: "100%"}}>[m
+[32m+[m[32m      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"[m
+[32m+[m[32m    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"/>[m
+[32m+[m[32m      <Marker[m[41m [m
+[32m+[m[32m      position={cent}[m
+[32m+[m[32m      draggable={true}[m
+[32m+[m[32m      animate={true}[m
+[32m+[m[32m      >[m
+[32m+[m[32m        <Popup>[m
+[32m+[m[32m          <h3 className='text-slate-900'>Hey you found me :)</h3>[m
+[32m+[m[32m        </Popup>[m
+[32m+[m[32m      </Marker>[m
+[32m+[m[32m    </MapContainer>[m
+[32m+[m[32m  )[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mexport default Map[m
+\ No newline at end of file[m
+[1mdiff --git a/components/Map/index.js b/components/Map/index.js[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5a400c9[m
+[1m--- /dev/null[m
+[1m+++ b/components/Map/index.js[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32mimport dynamic from "next/dynamic";[m
+[32m+[m
+[32m+[m[32mconst Map = dynamic(() => import('./Map'),{[m
+[32m+[m[32m    ssr:false[m
+[32m+[m[32m});[m
+[32m+[m
+[32m+[m[32mexport default Map;[m
+\ No newline at end of file[m
+[1mdiff --git a/components/Navbar.jsx b/components/Navbar.jsx[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0bba144[m
+[1m--- /dev/null[m
+[1m+++ b/components/Navbar.jsx[m
+[36m@@ -0,0 +1,41 @@[m
+[32m+[m[32mimport { FontAwesomeIcon } from "@fortawesome/react-fontawesome";[m
+[32m+[m[32mimport { faClose, faBars } from "@fortawesome/free-solid-svg-icons";[m
+[32m+[m[32mimport { useState } from "react";[m
+[32m+[m[32mconst Navbar = () => {[m
+[32m+[m[32m    if (typeof window !== "undefined") {[m
+[32m+[m[32m        const [menus, setMenus] = useState(faBars)[m
+[32m+[m[32m        const [cname, setCname] = useState('hidden')[m
+[32m+[m[32m        const openMenu = (event) => {[m
+[32m+[m[32m            console.log(event)[m
+[32m+[m[32m            setMenus(faClose);[m
+[32m+[m[32m            setCname('')[m
+[32m+[m[32m            if (menus === faClose) {[m
+[32m+[m[32m                setMenus(faBars)[m
+[32m+[m[32m                setCname('hidden')[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[41m        [m
+[32m+[m[32m        return ([m
+[32m+[m[32m            <>[m
+[32m+[m[32m                <div className="flex justify-between h-14 p-3 text-center">[m
+[32m+[m[32m                    <div>[m
+[32m+[m[32m                        <h2 className="font-black text-2xl">HFT</h2>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <FontAwesomeIcon icon={menus} className='absolute right-4 text-2xl transition ease-in-out delay-150' onClick={openMenu} />[m
+[32m+[m[32m                    <div className={`bg-slate-400 ${cname} absolute right-0 top-14 transition ease-in-out delay-150`}>[m
+[32m+[m[32m                        <ul className="bg-slate-600 p-7 ">[m
+[32m+[m[32m                            <li className="text-xl p-3 border-b">About</li>[m
+[32m+[m[32m                            <li className="text-xl p-3 border-b">Contact</li>[m
+[32m+[m[32m                            <li className="text-xl p-3 border-b">FAQ</li>[m
+[32m+[m[32m                            <li className="text-xl p-3 border-b">Login</li>[m
+[32m+[m[32m                        </ul>[m
+[32m+[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </>[m
+[32m+[m[32m        )[m
+[32m+[m[41m        [m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mexport default Navbar;[m
+\ No newline at end of file[m
+[1mdiff --git a/next.config.js b/next.config.js[m
+[1mindex 8b61df4..051b416 100644[m
+[1m--- a/next.config.js[m
+[1m+++ b/next.config.js[m
+[36m@@ -1,4 +1,12 @@[m
+ /** @type {import('next').NextConfig} */[m
+ module.exports = {[m
+   reactStrictMode: true,[m
+[32m+[m[32m  'fontawesome-svg-core': {[m
+[32m+[m[32m    'license': 'free'[m
+[32m+[m[32m  },[m
+[32m+[m[32m  env: {[m
+[32m+[m[32m    customKey: 'Richu Sony',[m
+[32m+[m[32m    MAP_API_KEY: 'AIzaSyBBx0cYEYMzhbRxDNak5NV6WTiXF2sYrXI',[m
+[32m+[m[32m  }[m
+[32m+[m
+ }[m
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex a249b0b..61f18c1 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -5,18 +5,99 @@[m
+   "packages": {[m
+     "": {[m
+       "dependencies": {[m
+[32m+[m[32m        "@fortawesome/fontawesome-svg-core": "^6.3.0",[m
+[32m+[m[32m        "@fortawesome/free-regular-svg-icons": "^6.3.0",[m
+[32m+[m[32m        "@fortawesome/free-solid-svg-icons": "^6.3.0",[m
+[32m+[m[32m        "@fortawesome/react-fontawesome": "^0.2.0",[m
+[32m+[m[32m        "@googlemaps/js-api-loader": "^1.15.1",[m
+[32m+[m[32m
