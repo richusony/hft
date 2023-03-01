@@ -24,7 +24,7 @@ const about = () => {
             </div>
 
             <div className="flex px-4">
-                {/* <div className='w-[600px] bg-slate-500'><Image src={child} width={0} height={0} alt='child' /></div> */}
+                <div className='w-[600px] bg-slate-500'><Image src={child} width={0} height={0} alt='child' /></div>
                 <div className='w-1/2 text-center flex justify-center align-middle px-3'><p className=' text-xl m-auto'>The uplifting story about this young girl serves as an inspiration 
                     for us and a display of gratitude on the part of the community for
                      extending our support. As Meryl Streep defined it, “The great gift 
