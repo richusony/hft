@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import child from '../../assets/about-child.jpg'
+import child2 from '../../assets/about-child2.jpg'
 import Link from 'next/link';
 
 
@@ -24,8 +25,8 @@ const about = () => {
                     given to her 2 years ago as part of Orphan Life Foundation’s efforts.</p>
             </div>
 
-            <div className="px-2 md:flex md:px-4">
-                <div className='md:w-[600px] bg-slate-500'><Image src={child} width={0} height={0} alt='child' className='w-full h-full' /></div>
+            <div className="px-2 md:flex md:px-4 ">
+                <div className='md:w-[600px] rounded-[5%] shadow-2xl'><Image src={child} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear' /></div>
                 <div className='mt-10 md:w-1/2 text-center flex justify-center align-middle px-3'><p className=' text-xl m-auto'>The uplifting story about this young girl serves as an inspiration
                     for us and a display of gratitude on the part of the community for
                     extending our support. As Meryl Streep defined it, “The great gift
@@ -50,7 +51,7 @@ const about = () => {
                     of human beings is that we have the power of empathy.” Please help
                     Orphan Life Foundation use the power of empathy along with YOUR
                     GRATITUDE to make the lives of these orphans and abandoned children better.</p></div>
-                <div className='md:w-[600px] bg-slate-500 mt-10'><Image src={child} width={0} height={0} alt='child' className='w-full h-full' /></div>
+                <div className='md:w-[600px] mt-10 rounded-[5%] shadow-2xl'><Image src={child2} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear' /></div>
             </div>
 
             <div className='text-center px-3 h-auto my-20'>
@@ -64,7 +65,7 @@ const about = () => {
                 <h2 className='text-3xl text-white h-20 mx-auto tracking-wide mb-20 font-medium px-2'>Take action by partnering<br/>
                     with us today</h2>
 
-                    <Link href='/donate' className='text-[#ff6600] px-5 py-3 bg-white font-medium hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</Link>
+                    <Link href='/donate' className='transition duration-300 text-[#ff6600] px-5 py-3 bg-white font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</Link>
 
             </div>
         </>
