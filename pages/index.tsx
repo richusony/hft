@@ -3,9 +3,9 @@ import Hero from "./Hero"
 
 const Home: NextPage = () => {
   return (
-    <>
-      <Hero />
-    </>
+    <div className='overflow-x-hidden'>
+      <Hero/>
+    </div>
   )
 }
 

@@ -9,14 +9,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppy: ["Poppins", "sans-serif"]
+      },
       backgroundImage: {
-        "bgimg": "linear-gradient(#ffffff00, #000),url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60')",
+        "bgimg": "linear-gradient(#ffffff00, #000),url(https://images.unsplash.com/photo-1531419859879-934d18f6c42d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)",
         "bg1": "url('https://images.unsplash.com/photo-1497375638960-ca368c7231e4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwzNDIzNjA4fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=600&q=60')",
         "bg2": "url('https://images.unsplash.com/photo-1539893867126-7ce0b48971ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8b3JwaGFuYWdlJTIwY2hpbGRyZW5zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60')",
-        "login-bg":"url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG9ycGhhbmFnZSUyMGNoaWxkcmVuc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60')",
-        "about-bg":"url('https://borgenproject.org/wp-content/uploads/15885121712_9e99820c10_z.jpg')"
+        "login-bg": "url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG9ycGhhbmFnZSUyMGNoaWxkcmVuc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60')",
+        "about-bg": "url('https://borgenproject.org/wp-content/uploads/15885121712_9e99820c10_z.jpg')"
       }
     },
+    // boxShadow: {
+    //   '3xl': 'rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    // },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }

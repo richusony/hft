@@ -11,14 +11,14 @@ const Hero = () => {
 
     return (
         <>
-            <div className='overflow-hidden'>
+            <div className='overflow-hidden scrollbar scrollbar-thumb-orange-900 scrollbar-track-gray-100 scrollbar-medium'>
                 <div className='py-32 bg-cover bg-bgimg text-center bg-fixed'>
                     <h1 className='text-white text-4xl md:text-5xl font-medium font-sans'>Hope For Tomorrow</h1>
                     <h2 className='text-white text-sm md:text-xl font-medium font-sans mt-2'>A family for every child in our lifetime</h2>
                 </div>
 
             </div>
-            <div className='bg-gradient-to-b from-black to-white w-full absolute h-8 opacity-30' >
+            <div className='bg-gradient-to-b from-black to-white/0 w-full absolute h-8 opacity-30' >
             </div>
             <div className='p-20 text-center'>
                 <h1 className='text-4xl md:text-5xl font-sans'>Children Belong in Families</h1>
