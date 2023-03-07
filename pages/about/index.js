@@ -17,7 +17,7 @@ const about = () => {
             {/* <div className='bg-gradient-to-b from-black to-white w-full absolute h-8 opacity-30' ></div> */}
 
             <div className="w-5/6 md:w-3/4 bg-white text-center mt-4 m-auto py-0 px-10 -translate-y-32">
-                <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black">Our Story</h1>
+                <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">Our Story</h1>
                 <p className='pt-6 text-xl md:pb-20 text-black flex justify-center'>In May 2016, one of Orphan Life Foundation’s members visited a school in the village of Didyr
                     , Burkina Faso which we had been helping by contributing to the improvement of the orphan education
                     environment present there. During the tour of the school, a child called him a “SAINT”. He asked as
@@ -36,7 +36,7 @@ const about = () => {
             </div>
 
             <div className='text-center px-3 h-auto mb-20'>
-                <h1 className='text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black'>Your Gratitude</h1>
+                <h1 className='text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium'>Your Gratitude</h1>
                 <p className='text-2xl md:text-4xl mt-8 leading-10 tracking-wide'>
                     "Inspired by the words which came out of the mouth of the little girl
                     as well as many other children like her, we bestow the same honor upon each and every
