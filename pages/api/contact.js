@@ -31,6 +31,6 @@ export default function (req, res) {
         else
             console.log(info)
     })
-    return res.status(200).json({val,emailId,name})
+    return res.status(200).json({emailId})
     res.end();
 }
