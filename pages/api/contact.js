@@ -29,6 +29,6 @@ export default function (req, res) {
         else
             console.log(info)
     })
-    res.status(200).json({val})
+    return res.status(200).json({val})
     res.end();
 }
