@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default function (req, res) {
     const pass = process.env.NEXT_PUBLIC_MAIL_PASS;
-    console.log(pass);
+    console.log(request received);
     const emailId = req.body.email
     const name = req.body.name
     let val = Math.floor(1000 + Math.random() * 9000);
