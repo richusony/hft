@@ -15,7 +15,6 @@ export default function (req, res) {
         secure: true,
     })
     const mailData = {
-        {console.log(req.body.email)}
         from: 'bloggzzy@gmail.com',
         to: `{req.body.email}`,
         subject: `Verification using OTP`,
