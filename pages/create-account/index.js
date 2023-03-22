@@ -39,13 +39,13 @@ const create_account = () => {
                 },
                 body: JSON.stringify(data)
             }
-            ).then(async (res) => {
+            ).then( (res) => {
                 console.log('Response received')
                 if (res.status === 200) {
                     console.log('Response succeeded!')
                     setName('')
                     setEmail('')
-                    let val = await res.body.pin;
+                    let val = res.body.pin;
                     push('/otp');
                     console.log(val);
                 }
