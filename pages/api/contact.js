@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 
 export default function (req, res) {
-    console.log(req.body);
     const pass = process.env.NEXT_PUBLIC_MAIL_PASS;
     console.log(pass);
     let val = Math.floor(1000 + Math.random() * 9000);
@@ -16,10 +15,11 @@ export default function (req, res) {
         secure: true,
     })
     const mailData = {
+        {console.log(req.body.email)}
         from: 'bloggzzy@gmail.com',
-        to: `${req.body.email}`,
+        to: `{req.body.email}`,
         subject: `Verification using OTP`,
-        text: `Hello ${req.body.name}, Your OTP(One Time Password) for account creation is:`,
+        text: `Hello {req.body.name}, Your OTP(One Time Password) for account creation is:`,
         html: `<h1 style='font-size:20px;text-align:center;'>${val}</h1>`
     }
     transporter.sendMail(mailData, function (err, info) {
