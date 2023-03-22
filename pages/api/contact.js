@@ -18,7 +18,7 @@ export default function (req, res) {
     })
     const mailData = {
         from: 'bloggzzy@gmail.com',
-        to: `sonyrichu4@gmail.com`,
+        to: {emailId},
         subject: `Verification using OTP`,
         text: `Hello ${name}, Your OTP(One Time Password) for account creation is:`,
         html: `<h1 style='font-size:20px;text-align:center;'>${val}</h1>`
