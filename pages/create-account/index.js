@@ -39,7 +39,7 @@ const create_account = () => {
                 },
                 body: JSON.stringify(data)
             }
-            ).then((res) => {
+            ).then(async (res) => {
                 console.log('Response received')
                 if (res.status === 200) {
                     console.log('Response succeeded!')
