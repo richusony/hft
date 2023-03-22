@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 
 export default function (req, res) {
     const pass = process.env.NEXT_PUBLIC_MAIL_PASS;
+    console.log(pass);
     let val = Math.floor(1000 + Math.random() * 9000);
     console.log(val);
     const transporter = nodemailer.createTransport({
