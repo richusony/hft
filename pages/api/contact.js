@@ -2,6 +2,9 @@ import nodemailer from 'nodemailer';
 
 export default function (req, res) {
     const pass = process.env.NEXT_PUBLIC_MAIL_PASS;
+    console.log("request received");
+    const emailId = req.body.email
+    const name = req.body.name
     let val = Math.floor(1000 + Math.random() * 9000);
     console.log(val);
     const transporter = nodemailer.createTransport({
@@ -15,9 +18,9 @@ export default function (req, res) {
     })
     const mailData = {
         from: 'bloggzzy@gmail.com',
-        to: `${req.body.email}`,
+        to: {emailId},
         subject: `Verification using OTP`,
-        text: `Hello ${req.body.name}, Your OTP(One Time Password) for account creation is:`,
+        text: `Hello ${name}, Your OTP(One Time Password) for account creation is:`,
         html: `<h1 style='font-size:20px;text-align:center;'>${val}</h1>`
     }
     transporter.sendMail(mailData, function (err, info) {
@@ -28,6 +31,6 @@ export default function (req, res) {
         else
             console.log(info)
     })
-    res.status(200).json({val})
+    return res.status(200).json({emailId})
     res.end();
 }

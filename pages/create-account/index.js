@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 // import axios from 'axios'
 
 
 const create_account = () => {
     if (typeof window !== "undefined") {
         // let val = (Math.floor(1000 + Math.random() * 9000));
+        const { push } = useRouter();
         const [pas, setPas] = useState('password')
         const [show, setShow] = useState('show')
         const showp = () => {
@@ -22,7 +24,7 @@ const create_account = () => {
         const [name, setName] = useState('')
         const [email, setEmail] = useState('')
 
-        const handleSubmit = (e) => {
+        const handleSubmit = async(e) => {
             e.preventDefault()
             console.log('Sending')
             let data = {
@@ -37,13 +39,14 @@ const create_account = () => {
                 },
                 body: JSON.stringify(data)
             }
-            ).then((res) => {
+            ).then( (res) => {
                 console.log('Response received')
                 if (res.status === 200) {
                     console.log('Response succeeded!')
                     setName('')
                     setEmail('')
                     let val = res.body.pin;
+                    push('/otp');
                     console.log(val);
                 }
             });
@@ -71,7 +74,7 @@ const create_account = () => {
                                 <h3 className="text-white text-sm mt- transition duration-150 ease-linear hover:text-[#abaaaa] cursor-pointer" onClick={showp}>{show} password</h3>
                             </div>
                             <div className="w-full text-center">
-                                <button type='submit' className="border p-1 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} ><Link href='/otp'>create</Link></button>
+                                <button type='submit' className="border p-1 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} ><Link href=''>create</Link></button>
                             </div>
                         </form>
                         <h2 className="text-white text-center my-5">or continue with</h2>
