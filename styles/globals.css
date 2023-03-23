@@ -3,3 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* tr:nth-of-type(even){
+    background-color: rgb(233, 233, 233);
+} */

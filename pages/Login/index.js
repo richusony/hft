@@ -37,8 +37,8 @@ const Login = () => {
                         </div>
                         </form>
                         <h2 className="text-white text-center my-5">or continue with</h2>
-                        <div className="text-white border text-xl text-center rounded p-2 mb-3 md:w-40 md:m-auto">
-                            Google Login
+                        <div className="text-white border w-fit text-xl text-center rounded p-2 mb-3 md:w-40 md:m-auto">
+                            <h2 className='w-fit'>Google Login</h2>
                         </div>
                         <h2 className="text-white text-center text-sm mt-3">Not a memeber? <Link href='/create-account' className='hover:underline'>Register now</Link></h2>
                     </div>

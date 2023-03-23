@@ -4,6 +4,7 @@ import child2 from '../../assets/about-child2.jpg'
 import Link from 'next/link';
 
 
+
 const about = () => {
     return (
         <>

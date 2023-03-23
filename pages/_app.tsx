@@ -3,16 +3,18 @@ import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { useState ,useEffect} from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import React from 'react';
+import { useState, useEffect } from 'react';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState(false);
   useEffect(() => {
-		// This forces a rerender, so the date is rendered
-		// the second time but not the first
-		setShowChild(true);
-	}, []);
+    // This forces a rerender, so the date is rendered
+    // the second time but not the first
+    setShowChild(true);
+  }, []);
   if (!showChild) {
     return null;
   }
@@ -23,10 +25,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   else {
     return (
       <>
-        <Layout>
-          <Component {...pageProps}>
-          </Component>
-        </Layout>
+        <UserProvider>
+          <Layout>
+            <Component {...pageProps}>
+            </Component>
+          </Layout>
+        </UserProvider>
       </>
     )
   }

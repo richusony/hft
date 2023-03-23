@@ -1,8 +1,10 @@
 import React from 'react'
 import Image from 'next/image';
 import child2 from '../../assets/about-child2.jpg'
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 function Blog() {
+    const { isLoading, user, error } = useUser();
     return (
         <div>
             <div className='text-center mb-20'>
@@ -10,7 +12,7 @@ function Blog() {
             </div>
 
             <div className='md:flex md:flex-wrap px-3'>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
+                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'> {user? user.name : "Title of the blog"} </h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
                 <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
                 <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
                 <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
