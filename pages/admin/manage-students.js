@@ -31,6 +31,7 @@ const manageStudents = () => {
 
           <div className='mx-auto md:w-full flex justify-end space-x-2 mb-2'>
             <button onClick={() => { push('/admin/addstudents') }} className='rounded my-2 px-8 py-1 font-semibold bg-green-400 hover:bg-green-500 duration-300' >Add</button>
+            <button onClick={() => { push('/admin/updatestudent') }} className='rounded my-2 px-6 py-1 font-semibold bg-green-400 hover:bg-green-500 duration-300' >Update</button>
             <button onClick={() => { push('/admin/deletestudent') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
           </div>
           <div className=' mx-auto overflow-scroll md:overflow-hidden'>
