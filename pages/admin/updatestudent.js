@@ -38,9 +38,11 @@ const updatestudent = () => {
                 setSchool('');
                 setImg('');
                 alert(`${name} detail have been updated`)
+                push('/admin/manage-students')
             }
-        }).then(()=>{
-            push('/admin/manage-students');
+            if(res.status === 404){
+                alert(`${name} doesn't exists!!`)
+            }
         })
     }
   return (

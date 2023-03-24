@@ -8,7 +8,7 @@ module.exports = {
     // MAIL_PASS: 'uvmnetahpgfgpizv',
   },
   images: {
-    domains: ['media.istockphoto.com']
+    domains: ['media.licdn.com', 'compositefest.vercel.app']
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

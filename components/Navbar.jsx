@@ -13,7 +13,7 @@ const Navbar = () => {
             setHide('hidden');
     }
     const { push } = useRouter();
-    const { isLoading, user, error } = useUser();
+    const { isLoading, user, error,  } = useUser();
 
     // if (isLoading) return (
     //     <h1>Loading...</h1>
