@@ -1,8 +1,10 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 
 const deletestudent = () => { 
     const [email, setEmail] = useState();
     const [name, setName] = useState();
+    const {push}=useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
@@ -24,7 +26,9 @@ const deletestudent = () => {
                 setEmail('');
                 alert(`${name} deleted from the database`)
             }
-        });
+        }).then(()=>{
+            push('/admin/manage-students');
+        })
     }
   return (
     <>

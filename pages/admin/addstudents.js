@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react'
 
 const addStudents = () => {
@@ -7,6 +8,7 @@ const addStudents = () => {
     const [blood, setBlood] = useState();
     const [school, setSchool] = useState();
     const [img, setImg] = useState();
+    const { push } = useRouter();
     const handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
@@ -35,9 +37,11 @@ const addStudents = () => {
                 setBlood('');
                 setSchool('');
                 setImg('');
-                alert(`${name} added to the database`)
+                alert(`${name} added to the database`);
             }
-        });
+        }).then(()=>{
+            push('/admin/manage-students');
+        })
     }
     return (
         <>
