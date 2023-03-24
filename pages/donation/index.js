@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import child from '../../assets/child_profile.jpg'
@@ -9,6 +9,18 @@ import { useRouter } from "next/dist/client/router";
 const Donation = () => {
     const { isLoading, user, error } = useUser();
     const { push } = useRouter();
+    const [data, setData] = useState([]);
+    let i = 0
+    console.log(data)
+    useEffect(() => {
+        async function fetchData() {
+            const res = await fetch('/api/getstudent'); // Replace with your API endpoint
+            const newData = await res.json();
+            setData(newData);
+        }
+        fetchData();
+    }, []);
+
     return (
         <>
             <div className='text-center mb-20'>
@@ -16,114 +28,19 @@ const Donation = () => {
             </div>
 
             <div className='w-full md:flex md:flex-wrap p-3'>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[14px] p-2'>
+                {data.map((item, key) => (<div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[14px] p-2'>
                     <div className='w-full'>
                         <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
                     </div>
                     <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>{user?user.name:"John Wick"}</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><button onClick={()=>{push('/donation/amount')}} className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</button></div>
+                        <h2 className='font-medium text-center text-2xl'>{item.stu_name ? item.stu_name : "John Wick"}</h2>
+                        <h3 className='text-xl'>Email: {item.stu_email}</h3>
+                        <h3 className='text-xl'>Age: {item.stu_age}</h3>
+                        <h3 className='text-xl'>Blood: {item.blood}</h3>
+                        <h3 className='text-xl'>School: {item.school}</h3>
+                        <div className='text-center flex justify-center align-middle py-3'><button onClick={() => { push('/donation/amount') }} className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</button></div>
                     </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-lg p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded-[4px]' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-9 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
-                <div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[4px] p-2'>
-                    <div className='w-full'>
-                        <Image src={child} width={0} height={0} className='rounded w-full' alt='child-profile' />
-                    </div>
-                    <div className='p-2 rounded-[4px]'>
-                        <h2 className='font-medium text-center text-2xl'>John Wick</h2>
-                        <h3 className='text-xl'>Age: 13</h3>
-                        <h3 className='text-xl'>Blood: B+</h3>
-                        <h3 className='text-xl'>School: st.Mary's English Medium High School</h3>
-                        <div className='text-center flex justify-center align-middle py-3'><Link href='/donation' className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</Link></div>
-                    </div>
-                </div>
+                </div>))};
             </div>
         </>
     )
