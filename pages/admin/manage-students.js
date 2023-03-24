@@ -5,6 +5,7 @@ import { FaTrash } from 'react-icons/fa'
 const manageStudents = () => {
   const { push } = useRouter();
   const [data, setData] = useState([]);
+  const [scount, setScount] = useState([]);
   let i = 0
   console.log(data)
   useEffect(() => {
@@ -12,6 +13,9 @@ const manageStudents = () => {
       const res = await fetch('/api/getstudent'); // Replace with your API endpoint
       const newData = await res.json();
       setData(newData);
+      const ress = await fetch('/api/studentscount');
+      const tot = await ress.json();
+      setScount(tot)
     }
     fetchData();
   }, []);
@@ -27,7 +31,7 @@ const manageStudents = () => {
 
           <div className='mx-auto md:w-full flex justify-end space-x-2 mb-2'>
             <button onClick={() => { push('/admin/addstudents') }} className='rounded my-2 px-8 py-1 font-semibold bg-green-400 hover:bg-green-500 duration-300' >Add</button>
-            <button onClick={() => { push('/admin/delstd') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
+            <button onClick={() => { push('/admin/deletestudent') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
           </div>
           <div className=' mx-auto overflow-scroll md:overflow-hidden'>
             {/* <table className='w-full md:w-full border-2 border-solid text-start mx-auto'>

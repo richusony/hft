@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/dist/client/router";
 
 const index = () => {
     const { push } = useRouter();
+    const [scount, setScount] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+          const res = await fetch('/api/studentscount');
+          const tot = await res.json();
+          setScount(tot.totalStudents)
+        }
+        fetchData();
+      }, []);
     return (
         <>
             <div className=' bg-slate-500'>
@@ -15,7 +25,7 @@ const index = () => {
 
                         <div className=' bg-blue-200 p-5 m-3 rounded' onClick={()=>{push('/admin/manage-students')}}>
                             <h1 className='text-center text-xl font-medium'>Manage Students</h1>
-                            <h1 className='text-center mt-2'>300</h1>
+                            <h1 className='text-center mt-2'>{scount?scount:"Loading..."}</h1>
                         </div>
 
                         <div className=' bg-yellow-200 p-5 m-3 rounded' onClick={()=>{push('/admin/donars')}}>
