@@ -12,6 +12,9 @@ const Donation = () => {
     const { isLoading, user, error } = useUser();
     const { push } = useRouter();
     const [data, setData] = useState([]);
+    if(!user){
+        push('/api/auth/login');
+    }
     let i = 0
     console.log(data)
     useEffect(() => {
