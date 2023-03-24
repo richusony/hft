@@ -40,7 +40,7 @@ const Donation = () => {
                         <h3 className='text-xl'>School: {item.school}</h3>
                         <div className='text-center flex justify-center align-middle py-3'><button onClick={() => { push('/donation/amount') }} className='transition duration-300 px-5 border-2 border-white py-3 font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE</button></div>
                     </div>
-                </div>))};
+                </div>))}
             </div>
         </>
     )
