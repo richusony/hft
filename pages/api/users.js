@@ -2,6 +2,7 @@ import axios from "axios";
 import { managementApiAccessToken } from "@auth0/nextjs-auth0";
 
 export default async function handler(req, res) {
+    try {
   const accessToken = await managementApiAccessToken();
   const url = "https://hft-auth.jp.auth0.com/api/v2/users";
   const headers = {
@@ -10,4 +11,8 @@ export default async function handler(req, res) {
   const { data } = await axios.get(url, { headers });
  console.log(data);
   res.status(200).json(data);
+} catch (error) {
+    console.error(error);
+    res.status(error.response.status || 500).end(error.response.statusText || 'Internal server error');
+  }
 }
