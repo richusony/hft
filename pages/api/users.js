@@ -3,7 +3,7 @@ import { managementApiAccessToken } from "@auth0/nextjs-auth0";
 
 export default async function handler(req, res) {
     try {
-  const accessToken = await managementApiAccessToken();
+  const accessToken = process.env.AUTH0_MANAGEMENT_API;
   const url = "https://hft-auth.jp.auth0.com/api/v2/users";
   const headers = {
     Authorization: `Bearer ${accessToken}`,

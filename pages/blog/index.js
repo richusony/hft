@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import child2 from '../../assets/about-child2.jpg'
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 function Blog() {
     const { isLoading, user, error } = useUser();
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+          const res = await fetch('/api/getblogs'); // Replace with your API endpoint
+          const newData = await res.json();
+          setData(newData);
+        }
+        fetchData();
+      }, []);
+
     return (
         <div>
             <div className='text-center mb-20'>
@@ -12,24 +23,7 @@ function Blog() {
             </div>
 
             <div className='md:flex md:flex-wrap px-3'>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'> {user? user.name : "Title of the blog"} </h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                <div className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-slate-500 p-2 mb-5 ease-in hover:scale-105'> <Image src={child2} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>Title of the blog</h2> <p className='text-sm text-start p-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled</p></div></div>
-                {/* <div className='text-center w-[200px] h-[200px] bg-orange-500 p-4'>B</div>
-                <div className='text-center w-[200px] h-[200px] bg-violet-500 p-4'>C</div>
-                <div className='text-center w-[200px] h-[200px] bg-blue-500 p-4'>D</div>
-                <div className='text-center w-[200px] h-[200px] bg-cyan-500 p-4'>E</div>
-                <div className='text-center w-[200px] h-[200px] bg-red-500 p-4'>F</div>
-                <div className='text-center w-[200px] h-[200px] bg-yellow-500 p-4'>G</div>
-                <div className='text-center w-[200px] h-[200px] bg-green-500 p-4'>H</div>
-                <div className='text-center w-[200px] h-[200px] bg-purple-500 p-4'>I</div>
-                <div className='text-center w-[200px] h-[200px] bg-slate-800 p-4'>J</div>
-                <div className='text-center w-[200px] h-[200px] bg-[#a4aa54] p-4'>K</div> */}
+                {data.map((item,key)=>( <div key={key} className='transition duration-300 rounded w-full md:w-96 mx-auto  bg-[#e2e0e0] p-2 mb-5 ease-in hover:scale-105'> <img src={item.img_url} width={0} height={0} alt='child' className='rounded w-full' /> <div className='w-full'><h2 className='text-xl text-center font-medium mt-3'>{item.title}</h2> <p className='text-sm text-start p-2'>{item.desc}</p></div></div>))}
             </div>
 
         </div>
