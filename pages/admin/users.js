@@ -1,26 +1,25 @@
-import React from 'react'
-import { useUser } from "@auth0/nextjs-auth0/client";
-const users = () => {
-    var axios = require("axios").default;
-    const { isLoading, user, error,  } = useUser();
+import { useState, useEffect } from "react";
 
-var options = {
-  method: 'GET',
-  url: 'https://hft-auth.jp.auth0.com/api/v2/users',
-  headers: {authorization: `Bearer ${process.env.AUTH0_MANAGEMENT_API}`}
-};
+export default function Users() {
+  const [users, setUsers] = useState([]);
 
-axios.request(options).then(function (response) {
-  console.log(response.data);
-}).catch(function (error) {
-  console.error(error);
-});
+  useEffect(() => {
+    async function getUsers() {
+      const res = await fetch("/api/users");
+      const data = await res.json();
+      setUsers(data);
+    }
+    getUsers();
+  }, []);
 
   return (
-    <>
-      <div>{user}</div>
-    </>
-  )
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.user_id}>{user.email}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
-
-export default users
