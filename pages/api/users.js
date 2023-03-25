@@ -8,5 +8,6 @@ export default async function handler(req, res) {
     Authorization: `Bearer ${accessToken}`,
   };
   const { data } = await axios.get(url, { headers });
+ console.log(data);
   res.status(200).json(data);
 }
