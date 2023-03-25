@@ -7,7 +7,7 @@ const users = () => {
 var options = {
   method: 'GET',
   url: 'https://hft-auth.jp.auth0.com/api/v2/users',
-  params: {q: `${user.email}`, search_engine: 'v3'},
+  params: {q: user?`${user.email}`:"bloggzzy@gmail.com", search_engine: 'v3'},
   headers: {authorization: `Bearer ${process.env.AUTH0_MANAGEMENT_API}`}
 };
 
