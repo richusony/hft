@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image';
-import child2 from '../../assets/about-child2.jpg'
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 function Blog() {
-    const { isLoading, user, error } = useUser();
+
     const [data, setData] = useState([]);
 
     useEffect(() => {

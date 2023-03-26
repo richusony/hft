@@ -1,4 +1,4 @@
-import clientPromise from "../api/auth/lib/mongodb.ts";
+import clientPromise from "./db/mongodb.ts";
 
 export default async (req, res) => {
    try {
@@ -8,7 +8,7 @@ export default async (req, res) => {
        const stu = await db
            .collection("students")
            .find({})
-           .sort({ metacritic: -1 })
+           .sort({ stu_name: 1 })
            .toArray();
 
        res.json(stu);

@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import child from '../../assets/child_profile.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0'
-import { useUser } from "@auth0/nextjs-auth0/client";
+
 import { useRouter } from "next/dist/client/router";
 
 const Donation = () => {
-    const { isLoading, user, error } = useUser();
     const { push } = useRouter();
     const [data, setData] = useState([]);
-    if(!user){
-        push('/api/auth/login');
-    }
     let i = 0
     console.log(data)
     useEffect(() => {
