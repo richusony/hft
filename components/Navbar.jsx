@@ -13,13 +13,8 @@ const Navbar = () => {
             setHide('hidden');
     }
     const { push } = useRouter();
-    const { isLoading, user, error, } = useUser();
 
-    // if (isLoading) return (
-    //     <h1>Loading...</h1>
-    // )
-    console.log(user)
-    const handleLogin = () => push('/Login')
+    const handleLogin = () => push('/Login');
     const handleLogout = () => push('/logout');
     if (typeof window !== "undefined") {
         const [menus, setMenus] = useState(faBars)
