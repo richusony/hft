@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app'
 import Layout from '../components/Layout'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { UserProvider } from '@auth0/nextjs-auth0/client';
 import LoadingBar from 'react-top-loading-bar'
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -18,10 +17,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     router.events.on('routeChangeStart', () => {
       setProgress(40)
     })
-router.events.on('routeChangeComplete', () => {
+    router.events.on('routeChangeComplete', () => {
       setProgress(100)
     })
-    }, [router.query])
+  }, [router.query])
   useEffect(() => {
     // This forces a rerender, so the date is rendered
     // the second time but not the first
@@ -37,18 +36,17 @@ router.events.on('routeChangeComplete', () => {
   else {
     return (
       <>
-        <UserProvider>
-          <Layout>
-            <LoadingBar
-              color='#f11946'
-              progress={progress}
-              waitingTime={800}
-              onLoaderFinished={() => setProgress(0)}
-            />
-            <Component {...pageProps}>
-            </Component>
-          </Layout>
-        </UserProvider>
+        <Layout>
+          <LoadingBar
+            color='#f11946'
+            progress={progress}
+            waitingTime={800}
+            onLoaderFinished={() => setProgress(0)}
+          />
+          <Component {...pageProps}>
+          </Component>
+        </Layout>
+
       </>
     )
   }
