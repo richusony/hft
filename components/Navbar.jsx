@@ -14,7 +14,7 @@ const Navbar = () => {
     }
     const { push } = useRouter();
 
-    const handleLogin = () => push('/Login');
+    const handleLogin = () => push('/Logi');
     const handleLogout = () => push('/logout');
     if (typeof window !== "undefined") {
         const [menus, setMenus] = useState(faBars)
