@@ -13,7 +13,7 @@ const Navbar = () => {
             setHide('hidden');
     }
     const { push } = useRouter();
-    const { isLoading, user, error,  } = useUser();
+    const { isLoading, user, error, } = useUser();
 
     // if (isLoading) return (
     //     <h1>Loading...</h1>
@@ -59,8 +59,7 @@ const Navbar = () => {
                         <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b-2 border-black md:border-none select-none ease-linear"><Link href="/donation" className="transition duration-300 ease-linear hover:font-medium hover:italic">Donation</Link></li>
                         <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b-2 border-black md:border-none cursor-pointer select-none ease-linear hover:font-medium hover:italic" onClick={scrollToFoot}>Contact</li>
                         <li className="text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b-2 border-black md:border-none cursor-pointer select-none ease-linear hover:font-medium hover:italic" onClick={scrollToFoot}>FAQ</li>
-                        {user ? (<><div><h3 className='text-xl p-3 md:p-0 md:mx-auto w-[100px] border-b-2 border-black md:border-none cursor-pointer select-none ease-linear hover:font-thin' onClick={hideLout}>{user.name}</h3>
-                            <h3 className={`bg-slate-700 rounded text-white text-xl py-3 md:p-0 md:mx-auto w-[100px] ${hide} border-b-2 border-black md:border-none cursor-pointer select-none ease-linear hover:font-medium hover:italic`} onClick={handleLogout}>Logout</h3></div></>) : (<h3 id='new' className="transition duration-150 text-xl p-3 md:p-0 md:mx-auto w-[100px] md:border-none select-none md:rounded md:bg-[#151522] md:text-white cursor-pointer ease-in hover:scale-95" onClick={handleLogin}>Login</h3>)}
+                        <h3 id='new' className="transition duration-150 text-xl p-3 md:p-0 md:mx-auto w-[100px] md:border-none select-none md:rounded md:bg-[#151522] md:text-white cursor-pointer ease-in hover:scale-95" onClick={handleLogin}>Login</h3>
                     </ul>
                 </div>
             </>
