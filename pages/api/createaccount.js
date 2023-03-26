@@ -1,5 +1,6 @@
 import User from "../../models/user";
 import connectMongo from "../../middleware/mongodb";
+var CryptoJS = require("crypto-js");
 
 const handler = async (req,res) =>{
     if(req.method== 'POST'){
@@ -11,7 +12,7 @@ const handler = async (req,res) =>{
         let u = new User({
             "name":req.body.name,
             "email":req.body.email,
-            "password":req.body.password
+            "password":CryptoJS.AES.encrypt(req.body.password, 'secret key 123').toString()
         })
        await u.save();
         res.status(200).json({success:"success"})

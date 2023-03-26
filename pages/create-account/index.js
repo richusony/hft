@@ -35,48 +35,55 @@ const create_account = () => {
                 email,
                 password
             }
-            fetch('/api/createaccount', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            }
-            ).then((res) => {
-                console.log('Response received')
-                if (res.status === 200) {
-                    console.log('Response succeeded!')
-                    toast.success('Account Created!!', {
-                        position: "bottom-left",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
+            await toast.promise(
+                fetch('/api/createaccount', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+                ).then((res) => {
+                    console.log('Response received')
+                    if (res.status === 200) {
+                        console.log('Response succeeded!')
+                        toast.success('Account Created!!', {
+                            position: "bottom-left",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
                         });
-                    setName('')
-                    setEmail('')
-                    setPassword('')
-                    setTimeout(() => {
-                        push('/login')
-                    }, 5000)
+                        setName('')
+                        setEmail('')
+                        setPassword('')
+                        setTimeout(() => {
+                            push('/Login')
+                        }, 5000)
+                    }
+                    if (res.status === 401) {
+                        toast.error('User already exists!', {
+                            position: "bottom-left",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                }),
+                {
+                    pending: 'Checking...',
+                    // success: 'Successfully Logged in 👌',
+                    // error: 'Login Failed 🤯'
                 }
-                if (res.status === 401) {
-                    toast.error('User already exists!', {
-                        position: "bottom-left",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
-            });
+            );
         }
         return (
             <>
