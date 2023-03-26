@@ -3,7 +3,6 @@ import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Navbar = () => {
     const [hide, setHide] = useState('hidden')
@@ -14,7 +13,7 @@ const Navbar = () => {
     }
     const { push } = useRouter();
 
-    const handleLogin = () => push('/Logi');
+    const handleLogin = () => push('/Login');
     const handleLogout = () => push('/logout');
     if (typeof window !== "undefined") {
         const [menus, setMenus] = useState(faBars)
