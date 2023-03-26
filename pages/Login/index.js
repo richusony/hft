@@ -76,7 +76,7 @@ const Login = () => {
                             console.log(res.json());
                             setTimeout(() => {
                                 push('/')
-                            }, 3000)
+                            }, 4000)
                             setEmail('')
                             setPassword('')
 
