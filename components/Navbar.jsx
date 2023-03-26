@@ -19,8 +19,8 @@ const Navbar = () => {
     //     <h1>Loading...</h1>
     // )
     console.log(user)
-    const handleLogin = () => push('/api/auth/login')
-    const handleLogout = () => push('/api/auth/logout');
+    const handleLogin = () => push('/login')
+    const handleLogout = () => push('/logout');
     if (typeof window !== "undefined") {
         const [menus, setMenus] = useState(faBars)
         const [cname, setCname] = useState('hidden')

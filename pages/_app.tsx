@@ -1,39 +1,57 @@
-  import '../styles/globals.css'
-  import type { AppProps } from 'next/app'
-  import Layout from '../components/Layout'
-  import "@fortawesome/fontawesome-svg-core/styles.css";
-  import { config } from "@fortawesome/fontawesome-svg-core";
-  import { UserProvider } from '@auth0/nextjs-auth0/client';
-  import React from 'react';
-  import { useState, useEffect } from 'react';
-  config.autoAddCss = false;
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import Layout from '../components/Layout'
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import LoadingBar from 'react-top-loading-bar'
+import { useRouter } from 'next/router';
+import React from 'react';
+import { useState, useEffect } from 'react';
+config.autoAddCss = false;
 
-  function MyApp({ Component, pageProps }: AppProps) {
-    const [showChild, setShowChild] = useState(false);
-    useEffect(() => {
-      // This forces a rerender, so the date is rendered
-      // the second time but not the first
-      setShowChild(true);
-    }, []);
-    if (!showChild) {
-      return null;
-    }
-
-    if (typeof window === 'undefined') {
-      return;
-    }
-    else {
-      return (
-        <>
-          <UserProvider>
-            <Layout>
-              <Component {...pageProps}>
-              </Component>
-            </Layout>
-          </UserProvider>
-        </>
-      )
-    }
+function MyApp({ Component, pageProps }: AppProps) {
+  const [progress, setProgress] = useState(0)
+  const [showChild, setShowChild] = useState(false);
+  const router = useRouter();
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => {
+      setProgress(40)
+    })
+router.events.on('routeChangeComplete', () => {
+      setProgress(100)
+    })
+    }, [router.query])
+  useEffect(() => {
+    // This forces a rerender, so the date is rendered
+    // the second time but not the first
+    setShowChild(true);
+  }, []);
+  if (!showChild) {
+    return null;
   }
 
-  export default MyApp;
+  if (typeof window === 'undefined') {
+    return;
+  }
+  else {
+    return (
+      <>
+        <UserProvider>
+          <Layout>
+            <LoadingBar
+              color='#f11946'
+              progress={progress}
+              waitingTime={800}
+              onLoaderFinished={() => setProgress(0)}
+            />
+            <Component {...pageProps}>
+            </Component>
+          </Layout>
+        </UserProvider>
+      </>
+    )
+  }
+}
+
+export default MyApp;
