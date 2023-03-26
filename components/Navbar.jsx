@@ -19,7 +19,7 @@ const Navbar = () => {
     //     <h1>Loading...</h1>
     // )
     console.log(user)
-    const handleLogin = () => push('/login')
+    const handleLogin = () => push('/Login')
     const handleLogout = () => push('/logout');
     if (typeof window !== "undefined") {
         const [menus, setMenus] = useState(faBars)
