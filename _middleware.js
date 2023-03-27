@@ -2,19 +2,18 @@ import { NextResponse} from 'next/server'
 import { verify } from "jsonwebtoken"
 import { getCookieParser } from 'next/dist/server/api-utils';
 
-const secret = 'jwtwebtoken'
+const secret = process.env.JWT_SECRET;
 
 export default function middleware(req) {
-  const { cookies } = req;
-
-  const jwt = cookies.token;
-
+  const cookieParser = getCookieParser(req)
+  const cookies = cookieParser()
+ const token = cookies.token
   const url = req.url;
 
   if(url.pathname.includes("/Login")){
-  if(jwt){
+  if(token){
     try{
-      verify(jwt, secret);
+      verify(token, secret);
       return NextResponse.redirect("/")
       console.log("token verified");
     }
@@ -24,16 +23,14 @@ export default function middleware(req) {
   }
 }
   if (req.url.pathname.includes('/donation')) { // it affects only in donation page
- 
-
     if (url.includes("/donation")) {
-      if (jwt == undefined) {
+      if (token == undefined) {
         return NextResponse.redirect("/Login")
       }
     
 
       try {
-        verify(jwt, secret);
+        verify(token, secret);
         return NextResponse.next();
       }
       catch (e) {

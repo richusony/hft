@@ -50,7 +50,7 @@ const Login = () => {
             }
             else {
                 // toast.promise( 
-                let res = await fetch('/api/login', {
+                const res = await fetch('/api/login', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json, text/plain, */*',
@@ -59,7 +59,7 @@ const Login = () => {
                     body: JSON.stringify(data)
                 }
                 )
-                let response = await res.json();
+                let response =await res.json()
                 console.log('Response received')
                 if (res.status === 200) {
                     localStorage.setItem('token',response.token)

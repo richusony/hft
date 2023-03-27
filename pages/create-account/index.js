@@ -50,7 +50,7 @@ const create_account = () => {
                         console.log('Response succeeded!')
                         toast.success('Account Created!!', {
                             position: "bottom-left",
-                            autoClose: 5000,
+                            autoClose: 3000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -63,12 +63,12 @@ const create_account = () => {
                         setPassword('')
                         setTimeout(() => {
                             push('/Login')
-                        }, 5000)
+                        }, 4000)
                     }
                     if (res.status === 401) {
                         toast.error('User already exists!', {
                             position: "bottom-left",
-                            autoClose: 5000,
+                            autoClose: 3000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -90,7 +90,7 @@ const create_account = () => {
                 <div className="bg-[#151522] py-10 px-5">
                     <ToastContainer
                         position="bottom-left"
-                        autoClose={5000}
+                        autoClose={3000}
                         hideProgressBar={false}
                         newestOnTop={false}
                         closeOnClick
@@ -98,7 +98,7 @@ const create_account = () => {
                         pauseOnFocusLoss
                         draggable
                         pauseOnHover
-                        theme="success"
+                        theme=""
                     />
                     <div className="bg-white/10 rounded p-4 mt-10 md:w-fit md:m-auto md:py-5 md:px-10">
                         <h1 className="text-white text-3xl text-center py-3 mb-5">Create Account</h1>
