@@ -12,15 +12,30 @@ config.autoAddCss = false;
 function MyApp({ Component, pageProps }: AppProps) {
   const [progress, setProgress] = useState(0)
   const [showChild, setShowChild] = useState(false);
+  const [user, setUser] = useState({ value: null });
+  const [keys, setKeys] = useState(0)
   const router = useRouter();
+
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setUser({ value: token });
+      setKeys(Math.random())
+    }
     router.events.on('routeChangeStart', () => {
       setProgress(40)
     })
     router.events.on('routeChangeComplete', () => {
       setProgress(100)
     })
+
   }, [router.query])
+  const logout = () => {
+   localStorage.removeItem('token');
+   localStorage.removeItem('uname');
+   setUser({ value: null });
+   setKeys(Math.random())
+ }
   useEffect(() => {
     // This forces a rerender, so the date is rendered
     // the second time but not the first
@@ -36,14 +51,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   else {
     return (
       <>
-        <Layout>
+        <Layout keys={keys} user={user} logout={logout}>
           <LoadingBar
             color='#f11946'
             progress={progress}
             waitingTime={800}
             onLoaderFinished={() => setProgress(0)}
           />
-          <Component {...pageProps}>
+          <Component {...pageProps} keys={keys} user={user} logout={logout} >
           </Component>
         </Layout>
 

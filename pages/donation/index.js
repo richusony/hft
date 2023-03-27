@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useRouter } from "next/dist/client/router";
 
-const Donation = () => {
+const Donation = ({keys}) => {
     const { push } = useRouter();
     const [data, setData] = useState([]);
+    
     let i = 0
     console.log(data)
     useEffect(() => {
@@ -19,7 +20,7 @@ const Donation = () => {
 
     return (
         <>
-            <div className='text-center mb-20'>
+            <div keys={keys} className='text-center mb-20'>
                 <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">DONATIONS</h1>
             </div>
             <FontAwesomeIcon icon="fa-solid fa-user" />

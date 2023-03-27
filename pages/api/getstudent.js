@@ -1,4 +1,5 @@
 import clientPromise from "./db/mongodb.ts";
+var jwt = require('jsonwebtoken');
 
 export default async (req, res) => {
    try {

@@ -36,7 +36,6 @@ const Login = () => {
                 email,
                 password
             }
-            console.log(data)
             if (mail == "" && pass == "") {
                 toast.warning('Fill all the Details!!', {
                     position: "bottom-left",
@@ -50,69 +49,73 @@ const Login = () => {
                 })
             }
             else {
-                await toast.promise(
-                    fetch('/api/login', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json, text/plain, */*',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    }
-                    ).then((res) => {
-                        console.log('Response received')
-                        if (res.status === 200) {
-                            console.log('Response succeeded!')
-                            toast.success('Login Successfull!!', {
-                                position: "bottom-left",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "dark",
-                            })
-                            console.log(res.json());
-                            setTimeout(() => {
-                                push('/')
-                            }, 4000)
-                            setEmail('')
-                            setPassword('')
+                // toast.promise( 
+                let res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+                )
+                let response = await res.json();
+                console.log('Response received')
+                if (res.status === 200) {
+                    localStorage.setItem('token',response.token)
+                    localStorage.setItem('uname',response.userd.name)
+                    console.log('Response succeeded!')
+                    toast.success('Login Successfull!!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    })
+                    setTimeout(() => {
+                        push('/')
+                    }, 4000)
+                    setEmail('')
+                    setPassword('')
 
 
-                        }
-                        if (res.status === 401) {
-                            toast.error('User does not exists!', {
-                                position: "bottom-left",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
-                        }
-                        if (res.status === 402) {
-                            toast.error('Invalid Credentials!!', {
-                                position: "bottom-left",
-                                autoClose: 3000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                            });
-                        }
-                    }),
-                    {
-                        pending: 'Checking...',
-                        // success: 'Successfully Logged in 👌',
-                        // error: 'Login Failed 🤯'
-                    }
-                );
+                }
+                if (res.status === 401) {
+                    toast.error('User does not exists!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+                if (res.status === 402) {
+                    toast.error('Invalid Credentials!!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+                // }
+                // )
+                //     ,
+                //     {
+                //         pending: 'Checking...',
+                //         // success: 'Successfully Logged in 👌',
+                //         // error: 'Login Failed 🤯'
+                //     }
+                // );
             }
         }
         return (
