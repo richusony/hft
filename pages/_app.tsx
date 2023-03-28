@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState(false);
   const [user, setUser] = useState({ value: null });
   const [keys, setKeys] = useState(0)
+  const [usr, setUsr] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -31,6 +32,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   }, [router.query])
   const logout = () => {
+    async function logoutuser() {
+      const res = await fetch('/api/usrlogout'); // Replace with your API endpoint
+      const newData = await res.json();
+      setUsr(newData);
+      if(res.status == 200){
+      console.log("user logged out")
+      }
+      else{
+        console.log("couldn't logout!!")
+      }
+  }
+  logoutuser();
    localStorage.removeItem('token');
    localStorage.removeItem('uname');
    setUser({ value: null });
