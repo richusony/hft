@@ -11,7 +11,7 @@ const Login = () => {
     if (typeof window !== "undefined") {
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
-        const { push } = useRouter();
+        const router = useRouter();
         const [pas, setPas] = useState('password')
         const [show, setShow] = useState('show')
 
@@ -76,7 +76,7 @@ const Login = () => {
                         theme: "dark",
                     })
                     setTimeout(() => {
-                        push('/')
+                        router.push('/donation')
                     }, 4000)
                     setEmail('')
                     setPassword('')

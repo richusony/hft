@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import {  getCookie } from 'cookies-next';
 import { useRouter } from "next/dist/client/router";
 
 const Donation = ({keys}) => {
-    const { push } = useRouter();
+    const router = useRouter();
     const [data, setData] = useState([]);
-    
+
+    // console.log(getCookie('token'))
+useEffect(()=>{
+    if(!getCookie('token')){
+        router.push('/Login')
+    }
+},[router.query])
+
+// console.log(getCookie('name'));
     let i = 0
     console.log(data)
     useEffect(() => {
@@ -20,12 +28,12 @@ const Donation = ({keys}) => {
 
     return (
         <>
-            <div keys={keys} className='text-center mb-20'>
+            <div  className='text-center mb-20'>
                 <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">DONATIONS</h1>
             </div>
             <FontAwesomeIcon icon="fa-solid fa-user" />
             <div className='w-full md:flex md:flex-wrap p-3'>
-                {data.map((item, key) => (<div className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[14px] p-2'>
+                {data.map((item, key) => (<div key={key} className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[14px] p-2'>
                     <div className='w-full'>
                         {item.img_url?<img src={item.img_url} width={1080} height={1080} className='rounded w-72 h-80' alt='child-profile' />:<img src={'https://cdn.onlinewebfonts.com/svg/img_218090.png'} className='rounded mx-auto border p-2 w-30 h-56' alt='child-profile' />}
                     </div>

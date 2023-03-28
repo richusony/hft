@@ -1,16 +1,14 @@
 import React from 'react'
 import otplg from './otp.png'
 import Image from 'next/image'
-import { useUser } from '@auth0/nextjs-auth0/client';
 import { useRouter } from 'next/router';
 
 
 const amount = () => {
-  const { isLoading, user, error } = useUser();
     const { push } = useRouter();
-  if(!user){
-    push('/api/auth/login');
-}
+    if(!localStorage.getItem('token')){
+      push('/Login')
+  }
   return (
     <>
       <div className="bg-[#151522] p-5 w-full">
