@@ -14,7 +14,7 @@ const handler = async (req, res) => {
             // if(req.body.email == 'admin@gmail.com' && req.body.password == 'admin'){
             //     redirect("/admin")
             // }
-            if (exists.email == req.body.email && originalText == req.body.password) {
+            if (exists.email == "admin@gmail.com" && originalText == "admin") {
                 var token = jwt.sign({ name: exists.name, email: exists.email }, process.env.JWT_SECRET,{
                     expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) // 1 hour
                 });
@@ -33,7 +33,7 @@ const handler = async (req, res) => {
             }
         }
         else {
-            res.status(401).json({ error: "User doesn't exists!!" });
+            res.status(401).json({ error: "Admin doesn't exists!!" });
         }
     }
     else {

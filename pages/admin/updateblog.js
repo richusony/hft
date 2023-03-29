@@ -1,11 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 const updateblog = () => {
     const [id, setId] = useState();
     const [title, setTitle] = useState();
     const [image, setImage] = useState();
     const [desc, setDesc] = useState();
-    const { push } = useRouter();
+    const [usr, setUsr] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        async function fetchuser() {
+            const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+            console.log(res);
+            if (res.status == 500) {
+                router.push('/admin/adlogin');
+            }
+            const newData = await res.json();
+            setUsr(newData);
+        }
+        fetchuser();
+    }, [router.query])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
@@ -31,7 +46,7 @@ const updateblog = () => {
                 setImage('');
                 setDesc('');
                 alert(`${title} updated !!`);
-                push('/admin/manage-blogs');
+                router.push('/admin/manage-blogs');
             }
             if(res.status === 404){
                 alert(`${title} doesn't exists!!`)

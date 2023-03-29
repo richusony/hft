@@ -4,9 +4,24 @@ import { FaTrash } from 'react-icons/fa'
 
 const manageUsers = () => {
   const [data, setData] = useState([]);
-  const {push}=useRouter();
+  const [usr, setUsr] = useState([]);
+  const router=useRouter();
   let i = 0
   console.log(data)
+
+  useEffect(() => {
+    async function fetchuser() {
+        const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+        console.log(res);
+        if (res.status == 500) {
+            router.push('/admin/adlogin');
+        }
+        const newData = await res.json();
+        setUsr(newData);
+    }
+    fetchuser();
+}, [router.query])
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch('/api/getusers'); // Replace with your API endpoint
@@ -25,7 +40,7 @@ const manageUsers = () => {
         <div className='w-full px-3 overflow-hidden md:overflow-none'>
 
           <div className='mx-auto md:w-full flex justify-end space-x-2 mb-2'>
-            <button onClick={() => { push('/admin/deleteuser') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
+            <button onClick={() => { router.push('/admin/deleteuser') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
           </div>
           <div className=' mx-auto overflow-scroll md:overflow-hidden'>
             <div className="flex flex-col">

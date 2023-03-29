@@ -1,10 +1,25 @@
 import { useRouter } from 'next/dist/client/router';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const deleteuser = () => {
     const [email, setEmail] = useState();
     const [name, setName] = useState();
-    const { push } = useRouter();
+    const [usr, setUsr] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        async function fetchuser() {
+            const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+            console.log(res);
+            if (res.status == 500) {
+                router.push('/admin/adlogin');
+            }
+            const newData = await res.json();
+            setUsr(newData);
+        }
+        fetchuser();
+    }, [router.query])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
@@ -27,7 +42,7 @@ const deleteuser = () => {
                 alert(`${name} deleted from the database`)
             }
         }).then(() => {
-            push('/admin/manage-users');
+            router.push('/admin/manage-users');
         })
     }
     return (

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const addStudents = () => {
     const [name, setName] = useState();
@@ -8,7 +8,22 @@ const addStudents = () => {
     const [blood, setBlood] = useState();
     const [school, setSchool] = useState();
     const [img, setImg] = useState();
-    const { push } = useRouter();
+    const [usr, setUsr] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        async function fetchuser() {
+            const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+            console.log(res);
+            if (res.status == 500) {
+                router.push('/admin/adlogin');
+            }
+            const newData = await res.json();
+            setUsr(newData);
+        }
+        fetchuser();
+    }, [router.query])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let data = {
@@ -40,7 +55,7 @@ const addStudents = () => {
                 alert(`${name} added to the database`);
             }
         }).then(()=>{
-            push('/admin/manage-students');
+            router.push('/admin/manage-students');
         })
     }
     return (

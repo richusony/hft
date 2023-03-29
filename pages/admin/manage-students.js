@@ -3,11 +3,26 @@ import { useRouter } from "next/dist/client/router";
 import { FaTrash } from 'react-icons/fa'
 
 const manageStudents = () => {
-  const { push } = useRouter();
+  const router  = useRouter();
   const [data, setData] = useState([]);
   const [scount, setScount] = useState([]);
+  const [usr, setUsr] = useState([]);
   let i = 0
   console.log(data)
+
+  useEffect(() => {
+    async function fetchuser() {
+        const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+        console.log(res);
+        if (res.status == 500) {
+            router.push('/admin/adlogin');
+        }
+        const newData = await res.json();
+        setUsr(newData);
+    }
+    fetchuser();
+}, [router.query])
+
   useEffect(() => {
     async function fetchData() {
       const res = await fetch('/api/getstudent'); // Replace with your API endpoint
@@ -27,9 +42,9 @@ const manageStudents = () => {
         <div className='w-full px-3 overflow-hidden md:overflow-none'>
 
           <div className='mx-auto md:w-full flex justify-end space-x-2 mb-2'>
-            <button onClick={() => { push('/admin/addstudents') }} className='rounded my-2 px-8 py-1 font-semibold bg-green-400 hover:bg-green-500 duration-300' >Add</button>
-            <button onClick={() => { push('/admin/updatestudent') }} className='rounded my-2 px-6 py-1 font-semibold bg-blue-400 hover:bg-blue-500 duration-300' >Update</button>
-            <button onClick={() => { push('/admin/deletestudent') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
+            <button onClick={() => { router.push('/admin/addstudents') }} className='rounded my-2 px-8 py-1 font-semibold bg-green-400 hover:bg-green-500 duration-300' >Add</button>
+            <button onClick={() => { router.push('/admin/updatestudent') }} className='rounded my-2 px-6 py-1 font-semibold bg-blue-400 hover:bg-blue-500 duration-300' >Update</button>
+            <button onClick={() => { router.push('/admin/deletestudent') }} className='rounded my-2 px-2 py-1 font-semibold bg-red-400 hover:bg-red-500 duration-300' ><FaTrash /></button>
           </div>
           <div className=' mx-auto overflow-scroll md:overflow-hidden'>
             {/* <table className='w-full md:w-full border-2 border-solid text-start mx-auto'>
