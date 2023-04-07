@@ -38,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       setUsr(newData);
       if(res.status == 200){
       console.log("user logged out")
+      router.push('/');
       }
       else{
         console.log("couldn't logout!!")

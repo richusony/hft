@@ -8,6 +8,7 @@ const dbName = "hft-web";
 
 export default async function (req, res) {
    try {
+
       await client.connect();
       console.log("Connected correctly to server");
       const db = client.db(dbName);
@@ -45,4 +46,4 @@ export default async function (req, res) {
    finally {
       await client.close();
    }
-}
+} 
