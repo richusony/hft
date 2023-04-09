@@ -94,8 +94,8 @@ const manageStudents = () => {
                             <td className="whitespace-nowrap px-6 py-4 text-center">{item.stu_email}</td>
                             <td className="whitespace-nowrap px-6 py-4 text-center">{item.stu_age}</td>
                             <td className="whitespace-nowrap px-6 py-4 text-center">{item.blood}</td>
-                            <td className="whitespace-nowrap px-6 py-4 text-center">{item.school}</td>
-                            <td className="whitespace-nowrap px-6 py-4 text-center">{item.img_url}</td>
+                            <td className="whitespace-nowrap px-6 py-4 text-left">{item.school}</td>
+                            <td className="whitespace-nowrap px-6 py-4 text-left">{item.img_url}</td>
                           </tr>
                         ))}
                       </tbody>

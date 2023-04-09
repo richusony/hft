@@ -39,7 +39,7 @@ const Hero = () => {
                 </div>
             </div>
 
-            <div className='p-5 flex-row justify-between md:flex md:justify-between md:mt-40'>
+            {/* <div className='p-5 flex-row justify-between md:flex md:justify-between md:mt-40'>
                 <div className='bg-cover bg-bg1 text-center mb-12 overflow-y-hidden rounded md:w-1/3 md:h-96'>
                     <div className='md:h-96 p-3 hover:backdrop-blur-2xl translate-y-72 left-0 hover:translate-y-0'>
                         <h1 className='text-white text-xl md:text-2xl mb-12 font-sans font-medium'>Prevent children from entering the system</h1>
@@ -57,7 +57,7 @@ const Hero = () => {
                         <button className='text-white p-2 border rounded mb-7 hover:bg-white hover:text-black font-serif'>Learn More</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className='bg-slate-400  h-3/4 p-2 map'>
                <div className='w-full h-screen'><Map /></div> 
