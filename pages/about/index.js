@@ -63,10 +63,11 @@ const about = () => {
             </div>
 
             <div className='bg-[#ff6600] text-center py-20'>
-                <h2 className='text-3xl text-white h-20 mx-auto tracking-wide mb-20 font-medium px-2'>Take action by partnering<br/>
+                <h2 className='text-3xl text-white h-20 mx-auto tracking-wide mb-20 font-medium px-2'>Take action by partnering<br />
                     with us today</h2>
-
-                    <Link href='/donate' className='transition duration-300 text-[#ff6600] px-5 py-3 bg-white font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</Link>
+                <form action='/api/checkout_sessions' method='POST'>
+                    <button type='submit' className='transition duration-300 text-[#ff6600] px-5 py-3 bg-white font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</button>
+                </form>
 
             </div>
         </>
