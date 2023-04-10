@@ -18,7 +18,9 @@ module.exports = {
         "bg2": "url('https://images.unsplash.com/photo-1539893867126-7ce0b48971ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8b3JwaGFuYWdlJTIwY2hpbGRyZW5zfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60')",
         "login-bg": "url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fG9ycGhhbmFnZSUyMGNoaWxkcmVuc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=2000&q=60')",
         "about-bg": "url('https://borgenproject.org/wp-content/uploads/15885121712_9e99820c10_z.jpg')",
-        "admin-bg": "url('https://www.kindacode.com/wp-content/uploads/2022/05/green.jpeg')"
+        "admin-bg": "url('https://www.kindacode.com/wp-content/uploads/2022/05/green.jpeg')",
+        "family": "linear-gradient(rgba(0, 0, 0, 0.01),#000000),url('https://images.unsplash.com/photo-1543342384-1f1350e27861?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80')",
+        "family2": "linear-gradient(#ffffff00, #000),url('https://www.parents.com/thmb/6gMhztGhYdCYdjwpYotHUb_Cjnw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shutterstock_583803574-e7537da4a36b463eb4ae472cbc7aa6c3.jpg')"
       }
     },
     // boxShadow: {
