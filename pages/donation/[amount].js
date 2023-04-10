@@ -47,13 +47,13 @@ const amount = () => {
     }
   })
 
-  const [item, setItem] = useState({
-    name: 'Alex',
-    description: 'kasdfkladjlfl',
-    image: "ksda",
-    quantity: 1,
-    price: 11,
-  });
+  // const [item, setItem] = useState({
+  //   name: 'Alex',
+  //   description: 'kasdfkladjlfl',
+  //   image: "ksda",
+  //   quantity: 1,
+  //   price: 11,
+  // });
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -67,21 +67,21 @@ const amount = () => {
     }
   }, []);
 
-  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-  const stripePromise = loadStripe(publishableKey);
+  // const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+  // const stripePromise = loadStripe(publishableKey);
 
-  const createCheckOutSession = async () => {
-    const stripe = await stripePromise;
-    const checkoutSession = await axios.post('/api/checkout_sessions', {
-      item: item,
-    });
-    const result = await stripe.redirectToCheckout({
-      sessionId: checkoutSession.data.id,
-    });
-    if (result.error) {
-      alert(result.error.message);
-    }
-  };
+  // const createCheckOutSession = async () => {
+  //   const stripe = await stripePromise;
+  //   const checkoutSession = await axios.post('/api/checkout_sessions', {
+  //     item: item,
+  //   });
+  //   const result = await stripe.redirectToCheckout({
+  //     sessionId: checkoutSession.data.id,
+  //   });
+  //   if (result.error) {
+  //     alert(result.error.message);
+  //   }
+  // };
 
   return (
     <>
@@ -101,7 +101,7 @@ const amount = () => {
         <form className="flex-row w-72 h-80 text-center mx-auto border px-3 mt-10" action='/api/checkout_sessions' method='POST'>
           <h2 className="text-xl w-fit text-center mx-auto font-medium text-white mt-6 mb-5">Enter the Donation Amount</h2>
           <input type="tel" placeholder="amount" className="block w-fit mx-auto placeholder:p-3 rounded h-10 mb-3 bg-inherit border text-white" required maxLength={6} onChange={(e) => { setAmt(e.target.value) }} />
-          <button type="submit" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4" onClick={createCheckOutSession}>Pay</button>
+          <button type="submit" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4">Pay</button>
         </form>
         <div className="p-1 mt-20">
           <Image src={otplg} width={0} height={0} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />
