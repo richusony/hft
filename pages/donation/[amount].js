@@ -1,40 +1,61 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import otplg from './otp.png'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { loadStripe } from '@stripe/stripe-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
 
 const amount = () => {
   const [amt, setAmt] = useState(0);
   const [data, setData] = useState([]);
+  const [usr, setUsr] = useState([]);
   const router = useRouter();
   const { amount } = router.query;
   let name;
   let img;
   const email = amount
-  if (!localStorage.getItem('token')) {
-    push('/Login')
-  }
 
-  async function fetchData() {
-    const res = await fetch('/api/getstudent'); // Replace with your API endpoint
-    const newData = await res.json();
-    setData(newData);
-  }
-  fetchData();
+  useEffect(() => {
+    async function fetchuser() {
+      const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+      console.log(res);
+      if (res.status != 200) {
+        router.push('/Login');
+      }
+      const newData = await res.json();
+      setUsr(newData);
+    }
+    fetchuser();
+  }, [router.query])
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('/api/getstudent'); // Replace with your API endpoint
+      const newData = await res.json();
+      setData(newData);
+    }
+    fetchData();
+  }, [router.query])
 
   data.map((item) => {
     if (item.stu_email == email) {
-      name = item.name;
+      name = item.stu_name;
       img = item.img_url;
     }
   })
 
-  React.useEffect(() => {
+  const [item, setItem] = useState({
+    name: 'Alex',
+    description: 'kasdfkladjlfl',
+    image: "ksda",
+    quantity: 1,
+    price: 11,
+  });
+
+  useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
     if (query.get('success')) {
@@ -46,67 +67,41 @@ const amount = () => {
     }
   }, []);
 
-  const handlePay = async (e) => {
-    e.preventDefault()
-    console.log('Sending')
-    let data = {
-      name,
-      amt,
-      img
+  const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+  const stripePromise = loadStripe(publishableKey);
+
+  const createCheckOutSession = async () => {
+    const stripe = await stripePromise;
+    const checkoutSession = await axios.post('/api/checkout_sessions', {
+      item: item,
+    });
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    if (result.error) {
+      alert(result.error.message);
     }
-    await toast.promise(
-      fetch('/api/checkout_sessions', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-      ).then((res) => {
-        console.log('Response received')
-        if (res.status === 200) {
-          console.log('Response succeeded!')
-          toast.success('Payment Succefull!!', {
-            position: "bottom-left",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          setAmt(0)
-        }
-        if (!res.status === 200) {
-          toast.error('payment failed!', {
-            position: "bottom-left",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
-      }),
-      {
-        pending: 'Checking...',
-        // success: 'Successfully Logged in 👌',
-        // error: 'Login Failed 🤯'
-      }
-    );
-  }
+  };
 
   return (
     <>
       <div className="bg-[#151522] p-5 w-full">
-        <form className="flex-row w-72 h-80 text-center mx-auto border px-3 mt-10">
+        <ToastContainer
+          position="bottom-left"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme=""
+        />
+        <form className="flex-row w-72 h-80 text-center mx-auto border px-3 mt-10" action='/api/checkout_sessions' method='POST'>
           <h2 className="text-xl w-fit text-center mx-auto font-medium text-white mt-6 mb-5">Enter the Donation Amount</h2>
           <input type="tel" placeholder="amount" className="block w-fit mx-auto placeholder:p-3 rounded h-10 mb-3 bg-inherit border text-white" required maxLength={6} onChange={(e) => { setAmt(e.target.value) }} />
-          <button type="submit" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4" onClick={(e) => handlePay(e)}>Pay</button>
+          <button type="submit" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4" onClick={createCheckOutSession}>Pay</button>
         </form>
         <div className="p-1 mt-20">
           <Image src={otplg} width={0} height={0} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />
@@ -116,4 +111,4 @@ const amount = () => {
   )
 }
 
-export default amount
+export default amount;

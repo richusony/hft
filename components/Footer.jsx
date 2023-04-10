@@ -16,7 +16,7 @@ const Footer = () => {
                         <FontAwesomeIcon icon={faTwitter} className='text-slate-200 mx-2 text-xl transition duration-150 hover:-translate-y-3 ease-linear hover:text-blue-500 md:text-3xl' />
                         <FontAwesomeIcon icon={faYoutube} className='text-slate-200 mx-2 text-xl transition duration-150 hover:-translate-y-3 ease-linear hover:text-red-500 md:text-3xl' />
                     </h2>
-                    <button className='text-white p-2 border rounded hover:bg-white hover:text-black font-serif md:block'>Submit</button>
+                    {/* <button className='text-white p-2 border rounded hover:bg-white hover:text-black font-serif md:block'>Submit</button> */}
                 </div>
 
 

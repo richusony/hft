@@ -20,8 +20,8 @@ const handler = async (req, res) => {
 
                 var userd = jwt.verify(token, process.env.JWT_SECRET);
                 res.setHeader('Set-Cookie', [
-                    `token=${token}; HttpOnly; Secure; SameSite=strict Max-Age=Math.floor(Date.now() / 1000) + (60 * 60)`,
-                    `name=${exists.name}; HttpOnly; Secure; SameSite=strict Max-Age=Math.floor(Date.now() / 1000) + (60 * 60)`
+                    `token=${token}; HttpOnly; Secure; SameSite=strict Max-Age=120`,
+                    `name=${exists.name}; HttpOnly; Secure; SameSite=strict Max-Age=120`
                 ]);
 
                 res.status(200).json({ success: "success", token, userd })
