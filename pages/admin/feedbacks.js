@@ -7,7 +7,7 @@ const feedbacks = () => {
 
   useEffect(() => {
       async function fetchuser() {
-          const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+          const res = await fetch('/api/checkadmin'); // Replace with your API endpoint
           console.log(res);
           if (res.status == 500) {
               router.push('/admin/adlogin');

@@ -11,9 +11,9 @@ const manageUsers = () => {
 
   useEffect(() => {
     async function fetchuser() {
-        const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+        const res = await fetch('/api/checkadmin'); // Replace with your API endpoint
         console.log(res);
-        if (res.status == 500) {
+        if (res.status != 200) {
             router.push('/admin/adlogin');
         }
         const newData = await res.json();
