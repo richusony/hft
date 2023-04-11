@@ -1,6 +1,9 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import Layout from '../components/Layout'
+import Layout from '../components/userLayout'
+// import layout from '../components/adminLayout'
+import Header from '../components/adnav'
+import Footer from '../components/adfoot'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import LoadingBar from 'react-top-loading-bar'
@@ -15,9 +18,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState({ value: null });
   const [keys, setKeys] = useState(0)
   const [usr, setUsr] = useState('');
+  // const [layout ,setLayout] = useState('userLayout')
   const router = useRouter();
-
-  useEffect(() => {
+  const { pathname, query } = useRouter();
+    useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setUser({ value: token });
@@ -36,20 +40,21 @@ function MyApp({ Component, pageProps }: AppProps) {
       const res = await fetch('/api/usrlogout'); // Replace with your API endpoint
       const newData = await res.json();
       setUsr(newData);
-      if(res.status == 200){
-      console.log("user logged out")
-      router.push('/');
+      if (res.status == 200) {
+        
+        console.log("user logged out")
+        router.push('/');
       }
-      else{
+      else {
         console.log("couldn't logout!!")
       }
+    }
+    logoutuser();
+    localStorage.removeItem('token');
+    localStorage.removeItem('uname');
+    setUser({ value: null });
+    setKeys(Math.random())
   }
-  logoutuser();
-   localStorage.removeItem('token');
-   localStorage.removeItem('uname');
-   setUser({ value: null });
-   setKeys(Math.random())
- }
   useEffect(() => {
     // This forces a rerender, so the date is rendered
     // the second time but not the first
@@ -63,9 +68,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     return;
   }
   else {
-    return (
-      <>
-        <Layout keys={keys} user={user} logout={logout}>
+    const fullUrl = `${window.location.origin}${pathname}?${new URLSearchParams(query as Record<string, string>).toString()}`;
+  console.log(fullUrl);
+
+    if (fullUrl.includes('/admin') ) {
+      return (
+        <>
+          <Header keys={keys} user={user} logout={logout} />
           <LoadingBar
             color='#f11946'
             progress={progress}
@@ -74,10 +83,27 @@ function MyApp({ Component, pageProps }: AppProps) {
           />
           <Component {...pageProps} keys={keys} user={user} logout={logout} >
           </Component>
-        </Layout>
+          <Footer />
+        </>
+      )
+    }
+    else {
+      return (
+        <>
+          <Layout keys={keys} user={user} logout={logout}>
+            <LoadingBar
+              color='#f11946'
+              progress={progress}
+              waitingTime={800}
+              onLoaderFinished={() => setProgress(0)}
+            />
+            <Component {...pageProps} keys={keys} user={user} logout={logout} >
+            </Component>
+          </Layout>
 
-      </>
-    )
+        </>
+      )
+    }
   }
 }
 
