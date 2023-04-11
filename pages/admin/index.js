@@ -6,6 +6,7 @@ const index = () => {
     const [scount, setScount] = useState([]);
     const [bcount, setBcount] = useState([]);
     const [ucount, setUcount] = useState([]);
+    const [acount, setAcount] = useState([]);
     const [usr, setUsr] = useState([]);
 
     useEffect(() => {
@@ -26,13 +27,16 @@ const index = () => {
             const resStudents = await fetch('/api/studentscount');
             const resBlogs = await fetch('/api/blogcount');
             const resUsers = await fetch('/api/usercount');
+            const resAdopters = await fetch('/api/adoptercount')
 
             const totStudents = await resStudents.json();
             const totBlogs = await resBlogs.json();
             const totUsers = await resUsers.json();
+            const totAdopters = await resAdopters.json();
             setScount(totStudents.totalStudents)
             setBcount(totBlogs.totalBlogs)
             setUcount(totUsers.totalUsers)
+            setAcount(totAdopters.totalAdopts)
         }
         fetchData();
     }, []);
@@ -54,6 +58,11 @@ const index = () => {
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/donars') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Donars</h1>
                             <h1 className='text-center mt-2'>300</h1>
+                        </div>
+
+                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/adoptionlist') }}>
+                            <h1 className='text-center text-xl font-medium'>Manage Adoptions</h1>
+                            <h1 className='text-center mt-2'>{acount ? acount : "Loading..."}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-users') }}>

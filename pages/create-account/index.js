@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const create_account = () => {
     if (typeof window !== "undefined") {
         // let val = (Math.floor(1000 + Math.random() * 9000));
-        const { push } = useRouter();
+        const router = useRouter();
         const [pas, setPas] = useState('password')
         const [show, setShow] = useState('show')
         const showp = () => {
@@ -62,7 +62,7 @@ const create_account = () => {
                         setEmail('')
                         setPassword('')
                         setTimeout(() => {
-                            push('/Login')
+                            router.push('/Login')
                         }, 4000)
                     }
                     if (res.status === 401) {
