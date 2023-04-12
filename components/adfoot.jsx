@@ -5,8 +5,8 @@ import { faFacebook, faInstagram, faTwitter, faYoutube } from '@fortawesome/free
 const Footer = () => {
     return (
         <>
-            <div className="bg-black py-4">
-                <h1 className='text-white text-center font-semibold py-4 text-xl'>Admin Controls</h1>
+            <div className="bg-black">
+                <h1 className='text-white text-center py-4 text-xl'>Admin Controls</h1>
             </div>
         </>
     )

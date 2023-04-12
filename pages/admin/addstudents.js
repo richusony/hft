@@ -9,6 +9,8 @@ const addStudents = () => {
     const [age, setAge] = useState();
     const [blood, setBlood] = useState();
     const [school, setSchool] = useState();
+    const [donation, setDonation] = useState();
+    const [status, setStatus] = useState("Pending");
     const [img, setImg] = useState();
     const [usr, setUsr] = useState([]);
     const router = useRouter();
@@ -40,7 +42,9 @@ const addStudents = () => {
             age,
             blood,
             school,
-            img
+            donation,
+            img,
+            status
         }
         fetch('/api/addstudents', {
             method: 'POST',
@@ -59,6 +63,7 @@ const addStudents = () => {
                 setAge('');
                 setBlood('');
                 setSchool('');
+                setDonation('');
                 setImg('');
                 alert(`${name} added to the database`);
             }
@@ -78,9 +83,9 @@ const addStudents = () => {
                         <input type="tel" placeholder="Age" className="w-full p-3 placeholder:p-3 rounded h-10 mb-3 bg-inherit border md:w-96 block text-white" onChange={(e) => { setAge(e.target.value) }} required />
                         <input type="text" placeholder="Blood Group" className="w-full p-3 placeholder:p-3 rounded h-10 mb-3 bg-inherit border md:w-96 block text-white" onChange={(e) => { setBlood(e.target.value) }} required />
                         <input type="text" placeholder="School" className="w-full p-3 placeholder:p-3 rounded h-10 mb-3 bg-inherit border md:w-96 block text-white" onChange={(e) => { setSchool(e.target.value) }} required />
-                        <FileInput onChange={handleFileChange} />
-
-                        <button onClick={openFileDialog}>Upload file</button>
+                        <input type="text" placeholder="Donation Amount" className="w-full p-3 placeholder:p-3 rounded h-10 mb-3 bg-inherit border md:w-96 block text-white" onChange={(e) => { setDonation(e.target.value) }} required />
+                        <input type="text" placeholder="Image" className="w-full p-3 placeholder:p-3 rounded h-10 mb-3 bg-inherit border md:w-96 block text-white" onChange={(e) => { setImg(e.target.value) }} required />
+                        
 
                         <div className="w-full text-center">
                             <button type='submit' className="button border p-1 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} >Add</button>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from "next/dist/client/router";
+import Image from "next/image"
+import otplg from "./otp.png"
 
 const index = () => {
     const router = useRouter();
@@ -48,7 +50,7 @@ const index = () => {
 
                     {/* <h1 className='text-xl font-medium text-black'>Dashboard</h1> */}
 
-                    <div className='bg-admin-bg p-5 md:flex md:justify-center'>
+                    <div className='bg-admin-bg p-5 md:h-fit md:flex md:justify-center'>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-students') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Students</h1>
@@ -85,6 +87,9 @@ const index = () => {
                             <h1 className='text-center mt-2'>user's Feedbacks and queries</h1>
                         </div>
 
+                    </div>
+                    <div className="p-1 mt-20">
+                        <Image src={otplg} width={0} height={0} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />
                     </div>
                 </div>
             </div>

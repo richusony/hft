@@ -9,6 +9,7 @@ const studentsSchema = new Schema({
     age: Number,
     blood: String,
     school: String,
+    donation: String,
     img_url: String
 });
 
