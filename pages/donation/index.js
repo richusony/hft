@@ -53,6 +53,7 @@ const Donation = ({ keys }) => {
                         <h3 className='text-xl'>Age: {item.stu_age}</h3>
                         <h3 className='text-xl'>Blood: {item.blood}</h3>
                         <h3 className='text-xl'>School: {item.school}</h3>
+                        <h3 className='text-xl'>Required Amt: {item.donation}</h3>
                         <div className='text-center flex justify-center align-middle py-3'><button onClick={(e) => { donate(e,item.stu_email) }} className='transition duration-300 px-5 border-2 border-white rounded py-3 font-medium ease-linear hover:bg-[#232222] hover:text-white hover:border-2 hover:border-white'>DONATE</button></div>
                     </div>
                 </div>))}

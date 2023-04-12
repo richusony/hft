@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
 import { useS3Upload } from "next-s3-upload";
 import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const addStudents = () => {
@@ -46,7 +48,7 @@ const addStudents = () => {
             img,
             status
         }
-        fetch('/api/addstudents', {
+        await toast.promise( fetch('/api/addstudents', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -56,6 +58,18 @@ const addStudents = () => {
         }
         ).then((res) => {
             console.log('Response received')
+            if(res.status == 401){
+                toast.error('Student already exists!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
             if (res.status === 200) {
                 console.log('Response succeeded!')
                 setName('');
@@ -65,15 +79,43 @@ const addStudents = () => {
                 setSchool('');
                 setDonation('');
                 setImg('');
-                alert(`${name} added to the database`);
+                toast.success('Account Created!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                router.push('/admin/manage-students');
+            }, 4000)
             }
-        }).then(() => {
-            router.push('/admin/manage-students');
-        })
+        }),
+        {
+            pending: 'Checking...',
+            // success: 'Successfully Logged in 👌',
+            // error: 'Login Failed 🤯'
+        }
+    );
     }
     return (
         <>
             <div className="bg-[#151522] py-10 px-5">
+            <ToastContainer
+                        position="bottom-left"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme=""
+                    />
                 <div className="bg-white/10 rounded p-4 mt-10 md:w-fit md:m-auto md:py-5 md:px-10">
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Student Details</h1>
 

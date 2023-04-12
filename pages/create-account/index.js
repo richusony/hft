@@ -29,6 +29,18 @@ const create_account = () => {
 
         const handleSubmit = async (e) => {
             e.preventDefault()
+            if(!email || !name || !password ){
+                toast.warning('Fill all the details!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
             console.log('Sending')
             let data = {
                 name,

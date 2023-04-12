@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 const updatestudent = () => {
     const [name, setName] = useState();
+    const [usr,setUsr]=useState();
     const [email, setEmail] = useState();
     const [age, setAge] = useState();
     const [blood, setBlood] = useState();

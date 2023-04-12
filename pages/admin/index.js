@@ -54,7 +54,7 @@ const index = () => {
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-students') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Students</h1>
-                            <h1 className='text-center mt-2'>{scount ? scount : "Loading..."}</h1>
+                            <h1 className='text-center mt-2'>{scount ? scount : "No Students"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/donars') }}>
@@ -64,17 +64,17 @@ const index = () => {
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/adoptionlist') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Adoptions</h1>
-                            <h1 className='text-center mt-2'>{acount ? acount : "Loading..."}</h1>
+                            <h1 className='text-center mt-2'>{acount ? acount : "No Adopters"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-users') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Users</h1>
-                            <h1 className='text-center mt-2'>{ucount ? ucount : "Loading..."}</h1>
+                            <h1 className='text-center mt-2'>{ucount ? ucount : "No Users"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-blogs') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Blogs</h1>
-                            <h1 className='text-center mt-2'>{bcount ? bcount : "Loading..."}</h1>
+                            <h1 className='text-center mt-2'>{bcount ? bcount : "No Blogs"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-gallery') }}>

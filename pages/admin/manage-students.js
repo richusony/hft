@@ -83,7 +83,9 @@ const manageStudents = () => {
                           <th scope="col" className="px-6 py-4 text-center">Age</th>
                           <th scope="col" className="px-6 py-4 text-center">Blood Group</th>
                           <th scope="col" className="px-6 py-4 text-center">School</th>
+                          <th scope="col" className="px-6 py-4 text-center">Donation Amt</th>
                           <th scope="col" className="px-6 py-4 text-center">Image Url</th>
+                          <th scope="col" className="px-6 py-4 text-center">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -95,7 +97,9 @@ const manageStudents = () => {
                             <td className="whitespace-nowrap px-6 py-4 text-center">{item.stu_age}</td>
                             <td className="whitespace-nowrap px-6 py-4 text-center">{item.blood}</td>
                             <td className="whitespace-nowrap px-6 py-4 text-left">{item.school}</td>
+                            <td className="whitespace-nowrap px-6 py-4 text-left">{item.donation}</td>
                             <td className="whitespace-nowrap px-6 py-4 text-left">{item.img_url}</td>
+                            <td className="whitespace-nowrap px-6 py-4 text-left">{item.status}</td>
                           </tr>
                         ))}
                       </tbody>
