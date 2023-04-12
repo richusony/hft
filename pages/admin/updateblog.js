@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const updateblog = () => {
     const [id, setId] = useState();
     const [title, setTitle] = useState();
@@ -29,7 +31,19 @@ const updateblog = () => {
             image,
             desc
         }
-        fetch('/api/updateblog', {
+        if (!id || !title || !image || !desc) {
+            toast.warning('Fill all the details!!', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+        await toast.promise(fetch('/api/updateblog', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -39,23 +53,61 @@ const updateblog = () => {
         }
         ).then((res) => {
             console.log('Response received')
+            if (res.status === 401) {
+                toast.error('Invalid Blog id!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
             if (res.status === 200) {
                 console.log('Blog updated!!')
                 setId('');
                 setTitle('');
                 setImage('');
                 setDesc('');
-                alert(`${title} updated !!`);
-                router.push('/admin/manage-blogs');
+                toast.success('Blog added!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    router.push('/admin/manage-blogs')
+                }, 4000)
             }
-            if(res.status === 404){
-                alert(`${title} doesn't exists!!`)
+        }),
+            {
+                pending: 'Checking...',
+                // success: 'Successfully Logged in 👌',
+                // error: 'Login Failed 🤯'
             }
-        })
+        )
     }
     return (
         <>
             <div className="bg-[#151522] py-10 px-5">
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
                 <div className="bg-white/10 rounded p-4 mt-10 md:w-fit md:m-auto md:py-5 md:px-10">
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Update Blogs</h1>
 

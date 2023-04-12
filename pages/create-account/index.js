@@ -122,7 +122,7 @@ const create_account = () => {
                                 <h3 className="text-white text-sm mt- transition duration-150 ease-linear hover:text-[#abaaaa] cursor-pointer" onClick={showp}>{show} password</h3>
                             </div>
                             <div className="w-full text-center">
-                                <button type='submit' className="border p-1 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} ><Link href=''>create</Link></button>
+                                <button type='submit' className="transition duration-300 border p-1 text-2xl ease-linear hover:bg-white hover:text-black text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} ><Link href=''>create</Link></button>
                             </div>
                         </form>
                         <h2 className="text-white text-center my-5">or continue with</h2>

@@ -21,7 +21,7 @@ export default async function (req, res) {
       // Check if the student exists in the database
       const existingBlog = await col.findOne(filter);
       if (!existingBlog) {
-         res.status(404).json({ message: "Student not found in the database." });
+         res.status(401).json({ message: "Blog not found in the database." });
          return;
       }
 

@@ -15,6 +15,15 @@ export default async function (req, res) {
       // Use the collection "people"
       const col = db.collection("blogs");
 
+      const filter = { "blog_id": req.body.id };
+
+       // Check if the student exists in the database
+       const existingStudent = await col.findOne(filter);
+       if (existingStudent) {
+          res.status(401).json({ message: "Blog id already exists." });
+          return;
+       }
+
       // Construct a document                                                                                                                                                              
       let blogDocument = {
          "blog_id": `${req.body.id}`,

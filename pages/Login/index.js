@@ -144,7 +144,7 @@ const Login = () => {
                                 <h3 className="transition duration-150 text-white text-sm mt-1 ease-linear cursor-pointer hover:text-[#abaaaa]">recovery password</h3>
                             </div>
                             <div className="w-full text-center">
-                                <button className="border p-2 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} >login</button>
+                                <button className="transition duration-300 border p-2 text-2xl text-white rounded w-36 ease-linear hover:bg-white hover:text-black my-4" onClick={(e) => { handleSubmit(e) }} >login</button>
                             </div>
                         </form>
                         <h2 className="text-white text-center my-5">or continue with</h2>
