@@ -126,9 +126,10 @@ const create_account = () => {
                             </div>
                         </form>
                         <h2 className="text-white text-center my-5">or continue with</h2>
-                        <div className="text-white border text-xl text-center rounded p-2 mb-3">
-                            Google Login
+                        <div className="text-white border mx-auto w-fit text-xl text-center rounded p-2 mb-3 md:w-40 md:m-auto">
+                            <h2 className='text-center mx-auto'>Google Login</h2>
                         </div>
+
                         <h2 className="text-white text-center text-sm">Already a memeber? <Link href='/Login' className='hover:underline'>Login</Link></h2>
                     </div>
                 </div>
