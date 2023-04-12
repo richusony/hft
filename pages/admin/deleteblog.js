@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const deleteblog = () => {
     const [id, setId] = useState();
@@ -27,7 +29,19 @@ const deleteblog = () => {
             id,
             title
         }
-        fetch('/api/deleteblog', {
+        if(!id || !title){
+            toast.warning('Fill all the details!!', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+        await toast.promise( fetch('/api/deleteblog', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -41,17 +55,55 @@ const deleteblog = () => {
                 console.log('blog deleted successfully')
                 setId('');
                 setTitle('');
-                alert(`${title} deleted from the database`)
-                router.push('/admin/manage-blogs');
+                toast.success('Blog deleted!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+                setTimeout(() => {
+                    router.push('/admin/manage-blogs')
+                }, 4000)
             }
-            if (res.status === 404) {
-                alert(`${title} does not exists!!`)
+            if (res.status === 401) {
+                toast.error('Invalid Blog id!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
-        })
+        }),
+        {
+            pending: 'Checking...',
+            // success: 'Successfully Logged in 👌',
+            // error: 'Login Failed 🤯'
+        }
+    )
     }
     return (
         <>
             <div className="bg-[#151522] py-10 px-5">
+            <ToastContainer
+                        position="bottom-left"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                    />
                 <div className="bg-white/10 rounded p-4 mt-10 mx-auto md:w-fit md:m-auto md:py-5 md:px-10">
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Remove Blog</h1>
 
