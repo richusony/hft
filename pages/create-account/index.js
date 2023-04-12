@@ -130,7 +130,7 @@ const create_account = () => {
                             <h2 className='text-center mx-auto'>Google Login</h2>
                         </div>
 
-                        <h2 className="text-white text-center text-sm">Already a memeber? <Link href='/Login' className='hover:underline'>Login</Link></h2>
+                        <h2 className="text-white mt-2 text-center text-sm">Already a memeber? <Link href='/Login' className='hover:underline'>Login</Link></h2>
                     </div>
                 </div>
             </>
