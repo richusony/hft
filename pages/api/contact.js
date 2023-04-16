@@ -2,7 +2,7 @@ import fs from 'fs';
 import nodemailer from 'nodemailer';
 
 export default function (req, res) {
-    const pass = process.env.NEXT_PUBLIC_MAIL_PASS;
+    const pass = process.env.MAIL_PASS;
     console.log("request received");
     const emailId = req.body.email;
         const transporter = nodemailer.createTransport({
