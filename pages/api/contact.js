@@ -19,7 +19,7 @@ export default function (req, res) {
             to: `${emailId}`,
             subject: `Verification using OTP`,
             text: `Hello , Your OTP(One Time Password) for account creation is:`,
-            html: `<html><body><a href='http://localhost:3000/Login/${emailId}'>reset Password</a></body></html>`,
+            html: `<html><body><a href='https://hft.vercel.app/Login/${emailId}'>reset Password</a></body></html>`,
         }
         transporter.sendMail(mailData, function (err, info) {
             if (err) {
