@@ -141,7 +141,7 @@ const Login = () => {
                             <input type={pas} placeholder="Enter password" className="w-full p-3 rounded h-10 mb-1 bg-inherit border text-white md:w-72 block" required onChange={(e) => { setPassword(e.target.value) }} />
                             <div className='flex justify-between'>
                                 <h3 className="transition duration-150 text-white text-sm mt-1 ease-linear hover:text-[#abaaaa] cursor-pointer" onClick={showp}>{show} password</h3>
-                                <h3 className="transition duration-150 text-white text-sm mt-1 ease-linear cursor-pointer hover:text-[#abaaaa]">recovery password</h3>
+                                <h3 className="transition duration-150 text-white text-sm mt-1 ease-linear cursor-pointer hover:text-[#abaaaa]"><Link href='/Login/reset'>recovery password</Link></h3>
                             </div>
                             <div className="w-full text-center">
                                 <button className="transition duration-300 border p-2 text-2xl text-white rounded w-36 ease-linear hover:bg-white hover:text-black my-4" onClick={(e) => { handleSubmit(e) }} >login</button>
