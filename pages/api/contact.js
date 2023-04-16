@@ -5,7 +5,7 @@ export default function (req, res) {
     console.log("request received");
     const emailId = req.body.email;
         const transporter = nodemailer.createTransport({
-            port: 465,
+            port: 25,
             host: "smtp.gmail.com",
             auth: {
                 user: 'bloggzzy@gmail.com',
@@ -28,5 +28,6 @@ export default function (req, res) {
             else
                 console.log(info)
         })
+        res.send("email reachead backend");
     return res.status(200).json({ emailId });
 }
