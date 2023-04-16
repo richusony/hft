@@ -28,6 +28,5 @@ export default function (req, res) {
             else
                 console.log(info)
         })
-        res.send("email reachead backend");
     return res.status(200).json({ emailId });
 }
