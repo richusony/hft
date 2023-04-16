@@ -1,4 +1,3 @@
-import fs from 'fs';
 import nodemailer from 'nodemailer';
 
 export default function (req, res) {
