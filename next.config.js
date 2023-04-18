@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     customKey: 'Richu Sony',
     // MAP_API_KEY: 'AIzaSyBBx0cYEYMzhbRxDNak5NV6WTiXF2sYrXI',

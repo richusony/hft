@@ -31,7 +31,7 @@ const resetpassword = () => {
     }
     else {
       // toast.promise( 
-      const res = await fetch('https://hft.vercel.app/api/resetpassword', {
+      const res = await fetch('http://localhost:3000/api/resetpassword', {
         method: 'POST',
         headers: {
           'Accept': 'application/json, text/plain, */*',
