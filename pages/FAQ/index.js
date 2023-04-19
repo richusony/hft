@@ -127,7 +127,7 @@ const index = () => {
 
                     <div className='px-5 md:px-0 mt-10 w-full items-center flex justify-center'>
                         <input type='text' onChange={(e) => setFeed(e.target.value)} required className='p-3 md:p-3 md:w-1/2 text-[#D9D9DC] rounded-lg bg-transparent border border-[#1D90F5] ' placeholder='Type something...' />
-                        <button className='bg-[#1D90F5] px-2 py-1 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
+                        <button className='bg-[#1D90F5] px-3 py-2 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
                     </div>
                 </div>
             </div >
