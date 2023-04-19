@@ -5,7 +5,8 @@ const handler = async (req,res) =>{
     if(req.method== 'POST'){
         let f = new Feedback({
             "user": req.body.userr,
-            "feed": req.body.feed
+            "feed": req.body.feed,
+            "dateTime":req.body.date
         })
        await f.save();
         res.status(200).json({success:"success"})

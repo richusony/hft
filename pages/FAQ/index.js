@@ -9,11 +9,13 @@ const index = () => {
 
     const [feed, setFeed] = useState('');
     const [usr, setUsr] = useState([]);
+    const [date,setDate]= useState([]);
     const [userr, setUserr] = useState([]);
     const [feedData, setFeedData] = useState('');
     const [count, setCount] = useState(0);
     const router = useRouter();
-    let counter = 0;
+    
+
     useEffect(() => {
         async function fetchuser() {
             const res = await fetch('/api/checkuser'); // Replace with your API endpoint
@@ -39,6 +41,17 @@ const index = () => {
     }, 1000)
 
     const handleFeed = async (e) => {
+        const currentdate = new Date();
+        const str = currentdate.toLocaleString("en-us", {
+          hour12: true,
+          weekday: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+          month: "long",
+          year: "numeric",
+        });
+        // console.log(str);
+        setDate(str);
         e.preventDefault();
         if (!feed) {
             toast.warning('Nothing to send!', {
@@ -55,7 +68,8 @@ const index = () => {
         console.log('Sending')
         let data = {
             userr,
-            feed
+            feed,
+            date
         }
         await toast.promise(
             fetch('/api/feedbacks', {
@@ -123,7 +137,7 @@ const index = () => {
                         {feedData ? feedData.map((item, key) => (
                             <div className="">
                                 <div key={key} className={`p-5 ${key % 2 == 0 ? 'bg-[#424656]' : 'bg-[#1D90F5] text-[#424656]'} md:font-medium text-[#D9D9DC] rounded-t-2xl text-xl rounded-br-2xl my-3`}>{item.feed}</div>
-                                <span className='text-[#D9D9DC] text-sm'>{item.user}</span> <span className='text-[#61646E]'>{item.createdAt}</span>
+                                <span className='text-[#D9D9DC] text-sm'>{item.user}</span> <span className='text-[#61646E]'>{item.dateTime}</span>
                             </div>
                         )) : <div className='bg-transparent p-5'>
                             <h1 className='text-center text-[#1D90F5] text-4xl'><FontAwesomeIcon icon={faMessage} /></h1>
@@ -131,10 +145,10 @@ const index = () => {
                         </div>}
                     </div>
 
-                    <form className='w-full'>
+                    <form action='' className='w-full'>
                         <div className='px-5 md:px-0 mt-10 w-full items-center flex justify-center'>
                             <input type='text' value={feed} onChange={(e) => setFeed(e.target.value)} required className='p-3 md:p-3 md:w-1/2 text-[#D9D9DC] rounded-lg bg-transparent border border-[#1D90F5] ' placeholder='Type something...' />
-                            <button className='bg-[#1D90F5] px-3 py-2 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
+                            <button type='submit' className='bg-[#1D90F5] px-3 py-2 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
                         </div>
                     </form>
                 </div>
