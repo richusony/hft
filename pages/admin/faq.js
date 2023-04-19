@@ -141,7 +141,7 @@ useEffect(() => {
                     <div className='overflow-y-scroll scrollbar-hide h-80 mb-12'>
                         {feedData ? feedData.map((item, key) => (
                             <div className="">
-                                <div key={key} className={`p-5 ${key % 2 == 0 ? 'bg-[#424656]' : 'bg-[#1D90F5] text-[#424656]'} md:font-medium text-[#D9D9DC] rounded-t-2xl text-xl rounded-br-2xl my-3`}>{item.feed}</div>
+                                <div key={key} className={`p-5 ${key % 2 == 0 ? 'bg-[#424656]' : 'bg-[#1D90F5] text-[#424656]'} md:font-medium text-[#D9D9DC] rounded-t-2xl text-xl rounded-bl-2xl my-3`}>{item.feed}</div>
                                 <span className='text-[#D9D9DC] text-sm'>{item.user}</span>&nbsp;&nbsp;<span className='text-[#61646E]'>{item.dateTime}</span>
                             </div>
                         )) : <div className='bg-transparent p-5'>
