@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const index = () => {
+const faq = () => {
 
     const [feed, setFeed] = useState('');
     const [usr, setUsr] = useState([]);
@@ -16,14 +16,14 @@ const index = () => {
     let counter = 0;
     useEffect(() => {
         async function fetchuser() {
-            const res = await fetch('/api/checkuser'); // Replace with your API endpoint
+            const res = await fetch('/api/checkadmin'); // Replace with your API endpoint
             if (res.status != 200) {
-                router.push('/Login');
+                router.push('/admin/adlogin');
             }
             const newData = await res.json();
             setUsr(newData);
-            console.log(newData.userd.name);
-            setUserr(newData.userd.name);
+            console.log(newData);
+            setUserr(newData.admind.name);
             // setUserr(usr.userd.name);
         }
         fetchuser();
@@ -143,4 +143,4 @@ const index = () => {
     )
 }
 
-export default index;
+export default faq;

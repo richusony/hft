@@ -9,6 +9,7 @@ const index = () => {
     const [bcount, setBcount] = useState([]);
     const [ucount, setUcount] = useState([]);
     const [acount, setAcount] = useState([]);
+    const [fcount, setFcount] = useState([]);
     const [usr, setUsr] = useState([]);
 
     useEffect(() => {
@@ -29,16 +30,19 @@ const index = () => {
             const resStudents = await fetch('/api/studentscount');
             const resBlogs = await fetch('/api/blogcount');
             const resUsers = await fetch('/api/usercount');
-            const resAdopters = await fetch('/api/adoptercount')
+            const resAdopters = await fetch('/api/adoptercount');
+            const resFeeds = await fetch('/api/feedcount');
 
             const totStudents = await resStudents.json();
             const totBlogs = await resBlogs.json();
             const totUsers = await resUsers.json();
             const totAdopters = await resAdopters.json();
+            const totFeeds = await resFeeds.json();
             setScount(totStudents.totalStudents)
             setBcount(totBlogs.totalBlogs)
             setUcount(totUsers.totalUsers)
             setAcount(totAdopters.totalAdopts)
+            setFcount(totFeeds.totalFeeds)
         }
         fetchData();
     }, []);
@@ -82,9 +86,9 @@ const index = () => {
                             <h1 className='text-center mt-2'>300</h1>
                         </div>
 
-                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/feedbacks') }}>
+                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/faq') }}>
                             <h1 className='text-center text-xl font-medium'>Feedbacks</h1>
-                            <h1 className='text-center mt-2'>user's Feedbacks and queries</h1>
+                            <h1 className='text-center mt-2'>{fcount ? fcount : "No Feeds"}</h1>
                         </div>
 
                     </div>

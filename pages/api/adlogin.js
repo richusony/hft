@@ -15,13 +15,13 @@ const handler = async (req, res) => {
             // }
             if (exists.email == req.body.email && req.body.password == originalText) {
                 var token = jwt.sign({ name: exists.name, email: exists.email }, process.env.JWT_SECRET, {
-                    expiresIn: "2m"
+                    expiresIn: "300s"
                 });
 
                 var userd = jwt.verify(token, process.env.JWT_SECRET);
                 res.setHeader('Set-Cookie', [
-                    `token=${token}; HttpOnly; Secure; SameSite=strict Max-Age=1200`,
-                    `name=${exists.name}; HttpOnly; Secure; SameSite=strict Max-Age=1200`
+                    `token=${token}; HttpOnly; Secure; SameSite=strict Max-Age=Math.floor(Date.now() / 1000) + (60 * 5)`,
+                    `name=${exists.name}; HttpOnly; Secure; SameSite=strict Max-Age=Math.floor(Date.now() / 1000) + (60 * 5)`
                 ]);
 
                 res.status(200).json({ success: "success", token, userd })
