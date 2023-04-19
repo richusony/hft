@@ -101,7 +101,7 @@ const index = () => {
     }
     return (
         <>
-            <div className='bg-[#272A37] p-10'>
+            <div className='bg-[#272A37] p-5'>
                 <ToastContainer
                     position="bottom-left"
                     autoClose={3000}
@@ -125,9 +125,9 @@ const index = () => {
                         )) : "oops!! No feeds yet!!"}
                     </div>
 
-                    <div className='mt-10 w-full flex justify-center'>
-                        <input type='text' onChange={(e) => setFeed(e.target.value)} required className='p-3 md:w-1/2 text-[#D9D9DC] rounded-lg bg-transparent border border-[#1D90F5] ' placeholder='Type something...' />
-                        <button className='bg-[#1D90F5] px-4 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
+                    <div className='px-5 md:px-0 mt-10 w-full items-center flex justify-center'>
+                        <input type='text' onChange={(e) => setFeed(e.target.value)} required className='p-3 md:p-3 md:w-1/2 text-[#D9D9DC] rounded-lg bg-transparent border border-[#1D90F5] ' placeholder='Type something...' />
+                        <button className='bg-[#1D90F5] px-2 py-1 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
                     </div>
                 </div>
             </div >
