@@ -8,11 +8,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const index = () => {
 
     const [feed, setFeed] = useState('');
-    const [usr, setUsr] = useState([]);
-    const [date,setDate]= useState([]);
-    const [userr, setUserr] = useState([]);
+    const [usr, setUsr] = useState('');
+    const [date,setDate]= useState('');
+    const [userr, setUserr] = useState('');
     const [feedData, setFeedData] = useState('');
-    const [count, setCount] = useState(0);
     const router = useRouter();
     
 
@@ -136,7 +135,7 @@ const index = () => {
                     <div className='overflow-y-scroll scrollbar-hide h-80 mb-12'>
                         {feedData ? feedData.map((item, key) => (
                             <div className="">
-                                <div key={key} className={`p-5 ${key % 2 == 0 ? 'bg-[#424656]' : 'bg-[#1D90F5] text-[#424656]'} md:font-medium text-[#D9D9DC] rounded-t-2xl text-xl rounded-br-2xl my-3`}>{item.feed}</div>
+                                <div key={key} className={`p-5 ${key % 2 == 0 ? 'bg-[#424656]' : 'bg-[#1D90F5] text-[#424656]'} md:font-medium text-[#D9D9DC] rounded-t-2xl text-xl ${item.user === "admin"?`rounded-bl-2xl` :`rounded-br-2xl `}  my-3`}>{item.feed}</div>
                                 <span className='text-[#D9D9DC] text-sm'>{item.user}</span> <span className='text-[#61646E]'>{item.dateTime}</span>
                             </div>
                         )) : <div className='bg-transparent p-5'>
@@ -145,12 +144,10 @@ const index = () => {
                         </div>}
                     </div>
 
-                    <form action='' className='w-full'>
                         <div className='px-5 md:px-0 mt-10 w-full items-center flex justify-center'>
                             <input type='text' value={feed} onChange={(e) => setFeed(e.target.value)} required className='p-3 md:p-3 md:w-1/2 text-[#D9D9DC] rounded-lg bg-transparent border border-[#1D90F5] ' placeholder='Type something...' />
                             <button type='submit' className='bg-[#1D90F5] px-3 py-2 md:px-4 md:py-3 mx-2 rounded-3xl'><FontAwesomeIcon icon={faPaperPlane} className='text-[#D9D9DC]' onClick={(e) => { handleFeed(e) }} /></button>
                         </div>
-                    </form>
                 </div>
             </div >
         </>

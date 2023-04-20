@@ -10,6 +10,7 @@ const index = () => {
     const [ucount, setUcount] = useState([]);
     const [acount, setAcount] = useState([]);
     const [fcount, setFcount] = useState([]);
+    const [gcount, setGcount] = useState([]);
     const [usr, setUsr] = useState([]);
 
     useEffect(() => {
@@ -32,17 +33,21 @@ const index = () => {
             const resUsers = await fetch('/api/usercount');
             const resAdopters = await fetch('/api/adoptercount');
             const resFeeds = await fetch('/api/feedcount');
+            const resGallerys = await fetch('/api/gallerycount');
 
             const totStudents = await resStudents.json();
             const totBlogs = await resBlogs.json();
             const totUsers = await resUsers.json();
             const totAdopters = await resAdopters.json();
             const totFeeds = await resFeeds.json();
+            const totGallerys = await resGallerys.json();
+
             setScount(totStudents.totalStudents)
             setBcount(totBlogs.totalBlogs)
             setUcount(totUsers.totalUsers)
             setAcount(totAdopters.totalAdopts)
             setFcount(totFeeds.totalFeeds)
+            setGcount(totGallerys.totalGallerys)
         }
         fetchData();
     }, []);
@@ -81,9 +86,9 @@ const index = () => {
                             <h1 className='text-center mt-2'>{bcount ? bcount : "No Blogs"}</h1>
                         </div>
 
-                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-gallery') }}>
+                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/gallery') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Gallery</h1>
-                            <h1 className='text-center mt-2'>300</h1>
+                            <h1 className='text-center mt-2'>{gcount ? gcount : "No Gallerys"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/faq') }}>
