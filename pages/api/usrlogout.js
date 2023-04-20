@@ -13,8 +13,8 @@ export default async (req, res) => {
     )
     console.log(userd);
     res.setHeader('Set-Cookie', [
-        `token=; HttpOnly; Secure; SameSite=strict Max-Age=Thu, 01 Jan 1970 00:00:00 GMT`,
-        `name=; HttpOnly; Secure; SameSite=strict Max-Age=Thu, 01 Jan 1970 00:00:00 GMT`
+        `token=""; HttpOnly; Secure; SameSite=strict Max-Age=Thu, 01 Jan 1970 00:00:00 GMT`,
+        `name=""; HttpOnly; Secure; SameSite=strict Max-Age=Thu, 01 Jan 1970 00:00:00 GMT`
       ]);
     res.status(200).json({ success: "success"})
 }

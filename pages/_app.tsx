@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     })
 
   }, [router.query])
+
   const logout = () => {
     async function logoutuser() {
       const res = await fetch('/api/usrlogout'); // Replace with your API endpoint
@@ -55,6 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     setUser({ value: null });
     setKeys(Math.random())
   }
+  
   useEffect(() => {
     // This forces a rerender, so the date is rendered
     // the second time but not the first
