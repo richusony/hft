@@ -23,10 +23,5 @@ export default async (req, res) => {
             res.status(200).json({ success: "success", userd })
         }
     }
-    // if (!token) {
-    //     res.status(401).json({ error: "cookies not exists" })
-    // }
-    // else {
-    //     res.status(200).json({ success: "success", userd })
-    // }
+   
 }

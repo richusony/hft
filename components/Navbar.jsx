@@ -41,7 +41,6 @@ const Navbar = ({ user, logout, keys }) => {
             }
         }
         useEffect(() => {
-            user
             async function fetchuser() {
                 const res = await fetch('/api/checkuser'); // Replace with your API endpoint
                 const newData = await res.json();
