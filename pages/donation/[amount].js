@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import otplg from './otp.png'
 import Image from 'next/image'
 import { useRouter } from 'next/router';
-import { loadStripe } from '@stripe/stripe-js';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -83,6 +82,79 @@ const amount = () => {
   //   }
   // };
 
+  const makePayment = async (e) => {
+    e.preventDefault();
+    console.log("here...");
+    const res = await initializeRazorpay();
+
+    if (!res) {
+      alert("Razorpay SDK Failed to load");
+      return;
+    }
+    let details = {
+      name,
+      img,
+      amt
+    }
+    // Make API call to the serverless API
+    const data = await fetch("/api/razor", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(details)
+    }).then((t) =>
+      t.json()
+      );
+
+    var options = {
+      key: process.env.RAZORPAY_API, // Enter the Key ID generated from the Dashboard
+      name: name,
+      currency: data.currency,
+      amount: amt,
+      order_id: data.id,
+      description: "Thankyou for your test donation",
+      image: img,
+      handler: function (response) {
+        console.log(response)
+        if(response.razorpay_payment_id != undefined){
+          router.push('/success');
+        }
+        // Validate payment at server - using webhooks is a better idea.
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+      },
+      prefill: {
+        name: name,
+        email: email,
+        contact: "+91 8945324356",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+    setAmt('');
+  };
+
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      // document.body.appendChild(script);
+
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
   return (
     <>
       <div className="bg-[#151522] p-5 w-full">
@@ -98,10 +170,10 @@ const amount = () => {
           pauseOnHover
           theme=""
         />
-        <form className="flex-row w-72 h-80 text-center mx-auto border px-3 mt-10" action='/api/checkout_sessions' method='POST'>
+        <form className="flex-row w-72 h-80 text-center mx-auto border px-3 mt-10">
           <h2 className="text-xl w-fit text-center mx-auto font-medium text-white mt-6 mb-5">Enter the Donation Amount</h2>
           <input type="tel" placeholder="amount" className="block w-fit mx-auto placeholder:p-3 rounded h-10 mb-3 bg-inherit border text-white" required maxLength={6} onChange={(e) => { setAmt(e.target.value) }} />
-          <button type="submit" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4">Pay</button>
+          <button type="submit" id="rzp-button1" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4" onClick={makePayment}>Pay</button>
         </form>
         <div className="p-1 mt-20">
           <Image src={otplg} width={0} height={0} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />

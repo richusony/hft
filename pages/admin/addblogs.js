@@ -32,7 +32,7 @@ const addblogs = () => {
             image,
             desc
         }
-        if(!id || !title || !image || !desc){
+        if (!id || !title || !image || !desc) {
             toast.warning('Fill all the details!!', {
                 position: "bottom-left",
                 autoClose: 3000,
@@ -44,72 +44,72 @@ const addblogs = () => {
                 theme: "dark",
             });
         }
-        await toast.promise( 
+        await toast.promise(
             fetch('/api/addblogs', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        }
-        ).then((res) => {
-            console.log('Response received')
-            if (res.status == 401){
-                toast.error('Blog id already exists!!', {
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             }
-            if (res.status === 200) {
-                console.log('Blog added!')
-                setId('');
-                setTitle('');
-                setImage('');
-                setDesc('');
-                toast.success('Blog added!!', {
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
-                setTimeout(() => {
-                    router.push('/admin/manage-blogs')
-                }, 4000)
+            ).then((res) => {
+                console.log('Response received')
+                if (res.status == 401) {
+                    toast.error('Blog id already exists!!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
+                if (res.status === 200) {
+                    console.log('Blog added!')
+                    setId('');
+                    setTitle('');
+                    setImage('');
+                    setDesc('');
+                    toast.success('Blog added!!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                    setTimeout(() => {
+                        router.push('/admin/manage-blogs')
+                    }, 4000)
+                }
+            }),
+            {
+                pending: 'Checking...',
+                // success: 'Successfully Logged in 👌',
+                // error: 'Login Failed 🤯'
             }
-        }),
-        {
-            pending: 'Checking...',
-            // success: 'Successfully Logged in 👌',
-            // error: 'Login Failed 🤯'
-        }
-    )
+        )
     }
     return (
         <>
             <div className="bg-[#151522] py-10 px-5">
-            <ToastContainer
-                        position="bottom-left"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="dark"
-                    />
+                <ToastContainer
+                    position="bottom-left"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
                 <div className="bg-white/10 rounded p-4 mt-10 md:w-fit md:m-auto md:py-5 md:px-10">
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Add Blogs</h1>
 
