@@ -11,6 +11,7 @@ const index = () => {
     const [acount, setAcount] = useState([]);
     const [fcount, setFcount] = useState([]);
     const [gcount, setGcount] = useState([]);
+    const [dcount, setDcount] = useState([]);
     const [usr, setUsr] = useState([]);
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const index = () => {
             const resAdopters = await fetch('/api/adoptercount');
             const resFeeds = await fetch('/api/feedcount');
             const resGallerys = await fetch('/api/gallerycount');
+            const resDonors = await fetch('/api/donorcount');
 
             const totStudents = await resStudents.json();
             const totBlogs = await resBlogs.json();
@@ -41,6 +43,7 @@ const index = () => {
             const totAdopters = await resAdopters.json();
             const totFeeds = await resFeeds.json();
             const totGallerys = await resGallerys.json();
+            const totDonors = await resDonors.json();
 
             setScount(totStudents.totalStudents)
             setBcount(totBlogs.totalBlogs)
@@ -48,6 +51,7 @@ const index = () => {
             setAcount(totAdopters.totalAdopts)
             setFcount(totFeeds.totalFeeds)
             setGcount(totGallerys.totalGallerys)
+            setDcount(totDonors.totalDonors)
         }
         fetchData();
     }, []);
@@ -68,7 +72,7 @@ const index = () => {
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/donars') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Donars</h1>
-                            <h1 className='text-center mt-2'>300</h1>
+                            <h1 className='text-center mt-2'>{dcount ? dcount : "No Donors"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/adoptionlist') }}>
