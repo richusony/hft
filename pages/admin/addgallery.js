@@ -28,6 +28,7 @@ const addgallery = () => {
         const time = currentdate.toLocaleString("en-us", {
             hour12: true,
             weekday: "short",
+            day:"2-digit",
             hour: "2-digit",
             minute: "2-digit",
             month: "long",

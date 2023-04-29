@@ -4,18 +4,20 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 
 
 const amount = () => {
   const [amt, setAmt] = useState(0);
   const [data, setData] = useState([]);
+  const [dates, setDates] = useState('');
   const [usr, setUsr] = useState([]);
   const router = useRouter();
   const { amount } = router.query;
   let name;
   let img;
   const email = amount
+
+
 
   useEffect(() => {
     async function fetchuser() {
@@ -34,6 +36,7 @@ const amount = () => {
     async function fetchData() {
       const res = await fetch('/api/getstudent'); // Replace with your API endpoint
       const newData = await res.json();
+      console.log(newData)
       setData(newData);
     }
     fetchData();
@@ -106,7 +109,7 @@ const amount = () => {
       body: JSON.stringify(details)
     }).then((t) =>
       t.json()
-      );
+    );
 
     var options = {
       key: process.env.RAZORPAY_API, // Enter the Key ID generated from the Dashboard
@@ -118,8 +121,33 @@ const amount = () => {
       image: img,
       handler: function (response) {
         console.log(response)
-        if(response.razorpay_payment_id != undefined){
+        if (response.razorpay_payment_id != undefined) {
           router.push('/success');
+          localStorage.setItem("payment_id", response.razorpay_payment_id);
+          localStorage.setItem("amount", amt);
+          const payment_id = response.razorpay_payment_id;
+          const uname = localStorage.getItem("uname");
+          const dbpayment = async () => {
+
+            let detail = {
+              uname,
+              name,
+              payment_id,
+              amt,
+            }
+            // Make API call to the serverless API
+            const d = await fetch("/api/dbpayment", {
+              method: "POST",
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(detail)
+            }).then((t) =>
+              t.json()
+            );
+          }
+          dbpayment();
         }
         // Validate payment at server - using webhooks is a better idea.
         // alert(response.razorpay_payment_id);
@@ -131,6 +159,9 @@ const amount = () => {
         email: email,
         contact: "+91 8945324356",
       },
+      theme: {
+        "color": "#151522"
+      }
     };
 
     const paymentObject = new window.Razorpay(options);
@@ -176,7 +207,7 @@ const amount = () => {
           <button type="submit" id="rzp-button1" role="link" className="block mx-auto border p-2 text-2xl text-white rounded w-36 my-4" onClick={makePayment}>Pay</button>
         </form>
         <div className="p-1 mt-20">
-          <Image src={otplg} width={0} height={0} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />
+          <Image src={otplg} width={1080} height={1080} alt='childrens' className='w-3/4 md:w-1/2 mx-auto' />
         </div>
       </div>
     </>
