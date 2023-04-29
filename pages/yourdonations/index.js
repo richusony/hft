@@ -36,7 +36,7 @@ const yourdonations = () => {
   }, []);
   return (
     <>
-      <div className='p-5'>
+      <div className='py-5 px-2'>
 
         <div className='mt-10 text-center p-5'><FontAwesomeIcon className='text-8xl' icon={faHandsHoldingChild} /></div>
         <h1 className='mb-10 text-2xl text-center font-semibold'>Your Donations</h1>
