@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const amount = () => {
+const amount = (user) => {
   const [amt, setAmt] = useState(0);
   const [data, setData] = useState([]);
   const [dates, setDates] = useState('');
@@ -117,7 +117,7 @@ const amount = () => {
       currency: data.currency,
       amount: amt,
       order_id: data.id,
-      description: "Thankyou for your test donation",
+      description: "Thankyou for your donation",
       image: img,
       handler: function (response) {
         console.log(response)
@@ -148,6 +148,29 @@ const amount = () => {
             );
           }
           dbpayment();
+
+          const donorEmail = localStorage.getItem("email");
+          const mailToDonor = async () =>{
+            let detail = {
+              uname,
+              donorEmail,
+              name,
+              payment_id,
+              amt,
+            }
+            // Make API call to the serverless API
+            const d = await fetch("/api/mailtodonor", {
+              method: "POST",
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(detail)
+            }).then((t) =>
+              t.json()
+            );
+          }
+          mailToDonor();
         }
         // Validate payment at server - using webhooks is a better idea.
         // alert(response.razorpay_payment_id);

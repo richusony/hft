@@ -64,6 +64,7 @@ const Login = () => {
                 if (res.status === 200) {
                     localStorage.setItem('token',response.token)
                     localStorage.setItem('uname',response.userd.name)
+                    localStorage.setItem('email',response.userd.email)
                     console.log('Response succeeded!')
                     toast.success('Login Successfull!!', {
                         position: "bottom-left",
