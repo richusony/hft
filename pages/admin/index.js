@@ -12,6 +12,7 @@ const index = () => {
     const [fcount, setFcount] = useState([]);
     const [gcount, setGcount] = useState([]);
     const [dcount, setDcount] = useState([]);
+    const [hcount, setHcount] = useState([]);
     const [usr, setUsr] = useState([]);
 
     useEffect(() => {
@@ -52,6 +53,8 @@ const index = () => {
             setFcount(totFeeds.totalFeeds)
             setGcount(totGallerys.totalGallerys)
             setDcount(totDonors.totalDonors)
+            const hft = localStorage.getItem('hft');
+            setHcount(hft);
         }
         fetchData();
     }, []);
@@ -98,6 +101,11 @@ const index = () => {
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/faq') }}>
                             <h1 className='text-center text-xl font-medium'>Feedbacks</h1>
                             <h1 className='text-center mt-2'>{fcount ? fcount : "No Feeds"}</h1>
+                        </div>
+
+                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/hftdonations') }}>
+                            <h1 className='text-center text-xl font-medium'>HFT Donations</h1>
+                            <h1 className='text-center mt-2'>{hcount ? hcount : "0"}</h1>
                         </div>
 
                     </div>

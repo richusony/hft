@@ -1,40 +1,38 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
-import { FaTrash } from 'react-icons/fa'
 
-const donars = () => {
-  const [usr, setUsr] = useState([]);
-  const [data, setData] = useState([]);
-  const router = useRouter();
-
-  let total = 0;
-  let i = 0;
-
-  useEffect(() => {
-    async function fetchuser() {
-      const res = await fetch('/api/checkadmin'); // Replace with your API endpoint
-      console.log(res);
-      if (res.status == 500) {
-        router.push('/admin/adlogin');
+const hftdonations = () => {
+    const [usr, setUsr] = useState([]);
+    const [data, setData] = useState([]);
+    const router = useRouter();
+  
+    let total = 0;
+    let i = 0;
+  
+    useEffect(() => {
+      async function fetchuser() {
+        const res = await fetch('/api/checkadmin'); // Replace with your API endpoint
+        console.log(res);
+        if (res.status == 500) {
+          router.push('/admin/adlogin');
+        }
+        const newData = await res.json();
+        setUsr(newData);
       }
-      const newData = await res.json();
-      setUsr(newData);
-    }
-    fetchuser();
-  }, [router.query])
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('/api/getdonars'); // Replace with your API endpoint
-      const newData = await res.json();
-      setData(newData);
-    }
-    fetchData();
-  }, []);
-
-
+      fetchuser();
+    }, [router.query])
+  
+    useEffect(() => {
+      async function fetchData() {
+        const res = await fetch('/api/gethft'); // Replace with your API endpoint
+        const newData = await res.json();
+        setData(newData);
+      }
+      fetchData();
+    }, []);
   return (
-    <div>
+    <>
+       <div>
       {
         data.map((items, key) => (
           <span className='text-white'>{total = total + Number(items.amount)}</span>
@@ -43,7 +41,7 @@ const donars = () => {
       }
       <div className=' md:w-auto p-3'>
         <div className='text-center mb-20'>
-          <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">Donors</h1>
+          <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">HFT Donations</h1>
         </div>
 
         <div className='w-full px-3 overflow-hidden md:overflow-none'>
@@ -78,6 +76,7 @@ const donars = () => {
                     </table>
                     <div className='px-2 mt-10'>
                       <span className="text-xl font-semibold">Total Donations :<span className='font-bold'> {total}.Rs</span></span>
+                      {localStorage.setItem("hft",i)}
                     </div>
                   </div>
                 </div>
@@ -89,7 +88,8 @@ const donars = () => {
 
       </div>
     </div>
+    </>
   )
 }
 
-export default donars
+export default hftdonations

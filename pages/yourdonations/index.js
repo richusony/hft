@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandsHoldingChild } from "@fortawesome/free-solid-svg-icons";
-import { FaTrash } from 'react-icons/fa';
+
+
 
 const yourdonations = () => {
   const [data, setData] = useState([]);
+  // const [total, setTotal] = useState(0);
+  let total = 0;
   const router = useRouter();
   let newData = {};
   let i = 0;
@@ -36,11 +39,17 @@ const yourdonations = () => {
   }, []);
   return (
     <>
+      {
+        data.map((items, key) => (
+          <span className='text-white'>{total = total + Number(items.amount)}</span>
+        ))
+
+      }
       <div className='py-5 px-2'>
 
         <div className='mt-10 text-center p-5'><FontAwesomeIcon className='text-8xl' icon={faHandsHoldingChild} /></div>
         <h1 className='mb-10 text-2xl text-center font-semibold'>Your Donations</h1>
-    {data.length <= 0?<h1 className='text-center text-2xl'>NO Donations Yet !!</h1>:
+        {data.length <= 0 ? <h1 className='text-center text-2xl'>NO Donations Yet !!</h1> :
           <div className=' md:w-auto p-3'>
 
             <div className='w-full px-3 overflow-hidden md:overflow-none'>
@@ -63,10 +72,10 @@ const yourdonations = () => {
                           </thead>
                           <tbody>
                             {data.map((item, key) => (
-                              <tr className="border-b border-neutral-500 ">
+                              <tr key={key} className="border-b border-neutral-500 ">
                                 <td className="whitespace-nowrap px-6 py-4 font-medium text-center">{i = i + 1}</td>
                                 <td className="whitespace-nowrap px-6 py-4 font-bold">{item.donar}</td>
-                                <td className="whitespace-nowrap px-6 py-4 text-center">{item.student == "HFT"?<span className='font-bold'>{item.student}  <FontAwesomeIcon icon={faHandsHoldingChild} /></span>:item.student}</td>
+                                <td className="whitespace-nowrap px-6 py-4 text-center">{item.student == "HFT" ? <span className='font-bold'>{item.student}  <FontAwesomeIcon icon={faHandsHoldingChild} /></span> : item.student}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-center">{item.payment_id}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-center">{item.amount}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-left">{item.dateTime}</td>
@@ -74,6 +83,9 @@ const yourdonations = () => {
                             ))}
                           </tbody>
                         </table>
+                        <div className='px-2 mt-10'>
+                          <span className="text-xl font-semibold">Total Donations :<span className='font-bold'> {total}.Rs</span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
