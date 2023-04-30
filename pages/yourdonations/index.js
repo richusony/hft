@@ -66,7 +66,7 @@ const yourdonations = () => {
                               <tr className="border-b border-neutral-500 ">
                                 <td className="whitespace-nowrap px-6 py-4 font-medium text-center">{i = i + 1}</td>
                                 <td className="whitespace-nowrap px-6 py-4 font-bold">{item.donar}</td>
-                                <td className="whitespace-nowrap px-6 py-4 text-center">{item.student}</td>
+                                <td className="whitespace-nowrap px-6 py-4 text-center">{item.student == "HFT"?<span className='font-bold'>{item.student}  <FontAwesomeIcon icon={faHandsHoldingChild} /></span>:item.student}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-center">{item.payment_id}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-center">{item.amount}</td>
                                 <td className="whitespace-nowrap px-6 py-4 text-left">{item.dateTime}</td>

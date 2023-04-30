@@ -2,10 +2,17 @@ import Image from 'next/image'
 import child from '../../assets/about-child.jpg'
 import child2 from '../../assets/about-child2.jpg'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 
 
 const about = () => {
+    const router = useRouter();
+
+    const donate = (e)=>{
+        e.preventDefault();
+        router.push('/about/orphanage')
+    }
     return (
         <>
             <div className='overflow-hidden'>
@@ -65,8 +72,8 @@ const about = () => {
             <div className='bg-[#ff6600] text-center py-20'>
                 <h2 className='text-3xl text-white h-20 mx-auto tracking-wide mb-20 font-medium px-2'>Take action by partnering<br />
                     with us today</h2>
-                <form action='/api/checkout_sessions' method='POST'>
-                    <button type='submit' className='transition duration-300 text-[#ff6600] px-5 py-3 bg-white font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white'>DONATE NOW</button>
+                <form>
+                    <button className='transition duration-300 text-[#ff6600] px-5 py-3 bg-white font-medium ease-linear hover:bg-[#ff6600] hover:text-white hover:border-2 hover:border-white' onClick={(e)=>donate(e)}>DONATE NOW</button>
                 </form>
 
             </div>
