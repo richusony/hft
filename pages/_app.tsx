@@ -10,6 +10,7 @@ import LoadingBar from 'react-top-loading-bar'
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { setCookie } from 'cookies-next'
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -42,7 +43,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       const newData = await res.json();
       setUsr(newData);
       if (res.status == 200) {
-        
+        setCookie("token","");
+        setCookie("name","");
         console.log("user logged out")
         router.push('/');
       }
