@@ -66,7 +66,7 @@ const mailtousers = () => {
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Send Mail to Users</h1>
 
                     <form action='' className="flex-row mx-auto w-full md:flex-col md:w-fit md:m-auto">
-                        <textarea type="text" placeholder="Type Something..." cols={50} rows={10} className="w-fit mx-auto p-3 placeholder:p-3 rounded mb-3 bg-inherit border md:w-fit block text-white" onChange={(e) => { setMsg(e.target.value) }} required />
+                        <textarea type="text" placeholder="Type Something..." cols={40} rows={10} className="w-full mx-auto p-3 placeholder:p-3 rounded mb-3 bg-inherit border md:w-fit block text-white" onChange={(e) => { setMsg(e.target.value) }} required />
 
                         <div className="w-full text-center">
                             <button type='submit' className="button border p-1 text-2xl text-white rounded w-36 my-4" onClick={(e) => { handleSubmit(e) }} >send</button>

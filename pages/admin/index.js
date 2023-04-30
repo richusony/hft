@@ -66,7 +66,7 @@ const index = () => {
 
                     {/* <h1 className='text-xl font-medium text-black'>Dashboard</h1> */}
 
-                    <div className='bg-admin-bg p-5 md:h-fit md:flex md:justify-center'>
+                    <div className='bg-admin-bg p-5 md:h-fit md:flex md:flex-wrap md:justify-center'>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/manage-students') }}>
                             <h1 className='text-center text-xl font-medium'>Manage Students</h1>
@@ -106,6 +106,11 @@ const index = () => {
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/hftdonations') }}>
                             <h1 className='text-center text-xl font-medium'>HFT Donations</h1>
                             <h1 className='text-center mt-2'>{hcount ? hcount : "0"}</h1>
+                        </div>
+
+                        <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/mailtousers') }}>
+                            <h1 className='text-center text-xl font-medium'>Send Message</h1>
+                            <h1 className='text-center mt-2'></h1>
                         </div>
 
                     </div>
