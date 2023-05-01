@@ -35,18 +35,18 @@ const donars = () => {
 
   return (
     <div>
-      {
-        data.map((items, key) => (
-          <span className='text-white'>{total = total + Number(items.amount)}</span>
-        ))
-
-      }
       <div className=' md:w-auto p-3'>
         <div className='text-center mb-20'>
           <h1 className="text-[40px] border-b-[4px] border-b-[#ff6600] inline-block rounded-sm pb-4 mt-20 text-black font-medium">Donors</h1>
         </div>
 
         <div className='w-full px-3 overflow-hidden md:overflow-none'>
+        {
+        data.map((items, key) => (
+          <span className='text-white'>{total = total + Number(items.amount)}</span>
+        ))
+
+      }
           <div className=' mx-auto overflow-scroll md:overflow-hidden'>
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
