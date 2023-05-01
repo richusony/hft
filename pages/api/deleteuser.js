@@ -34,7 +34,7 @@ export default async function (req, res) {
          }
       } else {
          // If the student doesn't exist, return an error message
-         res.status(404).json({ message: "Student not found." });
+         res.status(401).json({ message: "Student not found." });
       }
 
    } catch (err) {

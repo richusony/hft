@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const deletestudent = () => { 
     const [email, setEmail] = useState();
@@ -26,7 +28,32 @@ const deletestudent = () => {
             name,
             email
         }
-        fetch('/api/deletestudent', {
+        if(!name){
+            toast.warning('Enter the name!!', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+        if(!email){
+            toast.warning('Enter the Email!!', {
+                position: "bottom-left",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+
+      await toast.promise(  fetch('/api/deletestudent', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -36,18 +63,57 @@ const deletestudent = () => {
         }
         ).then((res) => {
             console.log('Response received')
+            if(res.status == 401){
+                toast.error('Student not found!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
             if (res.status === 200) {
                 console.log('student deleted successfully')
                 setEmail('');
-                alert(`${name} deleted from the database`)
+                toast.success('Student deleted!!', {
+                    position: "bottom-left",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
             }
         }).then(()=>{
             router.push('/admin/manage-students');
-        })
+        }),
+        {
+            pending: 'Checking...',
+            // success: 'Successfully Logged in 👌',
+            // error: 'Login Failed 🤯'
+        }
+    )
     }
   return (
     <>
       <div className="bg-[#151522] py-10 px-5">
+      <ToastContainer
+                        position="bottom-left"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                    />
                 <div className="bg-white/10 rounded p-4 mt-10 mx-auto md:w-fit md:m-auto md:py-5 md:px-10">
                     <h1 className="text-white text-3xl text-center py-3 mb-5">Remove Student</h1>
         

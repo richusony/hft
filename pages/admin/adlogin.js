@@ -11,6 +11,7 @@ const Adlogin = () => {
     if (typeof window !== "undefined") {
         const [email, setEmail] = useState('')
         const [password, setPassword] = useState('')
+        const [loading, setLoading] = useState(false)
         const router = useRouter();
         const [pas, setPas] = useState('password')
         const [show, setShow] = useState('show')
@@ -51,6 +52,7 @@ const Adlogin = () => {
             }
             else {
                 // toast.promise( 
+                    setLoading(true);
                 const res = await fetch('/api/adlogin', {
                     method: 'POST',
                     headers: {
@@ -62,6 +64,7 @@ const Adlogin = () => {
                 )
                 let response =await res.json()
                 console.log('Response received')
+                setLoading(false)
                 if (res.status === 200) {
                     localStorage.setItem('token',response.token)
                     localStorage.setItem('uname',response.userd.name)
@@ -153,6 +156,9 @@ const Adlogin = () => {
                             <h2 className='text-center mx-auto'>Google Login</h2>
                         </div>
                         <h2 className="text-white text-center text-sm mt-3">Not a memeber? <Link href='/create-account' className='hover:underline'>Register now</Link></h2> */}
+                    </div>
+                    <div className={`py-3 px-9 w-40 ${loading ? "" : "hidden"} bg-black`}>
+                        <h1 className='text-white text-center'>Loading...</h1>
                     </div>
                 </div>
             </>
