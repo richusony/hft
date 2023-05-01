@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const addgallery = () => {
     const [id, setId] = useState();
     const [image, setImage] = useState();
-    const [date, setDate] = useState('');
+    // const [date, setDate] = useState('');
     const [usr, setUsr] = useState([]);
     const router = useRouter();
 
@@ -24,24 +24,11 @@ const addgallery = () => {
     }, [router.query])
 
     const handleSubmit = async (e) => {
-        const currentdate = new Date();
-        const time = currentdate.toLocaleString("en-us", {
-            hour12: true,
-            weekday: "short",
-            day:"2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            month: "long",
-            year: "numeric",
-        });
-        setDate(time);
-        console.log(date);
 
         e.preventDefault();
         let data = {
             id,
             image,
-            date
         }
         if (!id || !image) {
             toast.warning('Fill all the details!!', {
@@ -82,7 +69,7 @@ const addgallery = () => {
                     console.log('Gallery added!')
                     setId('');
                     setImage('');
-                    setDate('');
+                    // setDate('');
                     toast.success('Gallery added!!', {
                         position: "bottom-left",
                         autoClose: 3000,

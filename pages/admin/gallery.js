@@ -3,6 +3,7 @@ import { FaTrash } from 'react-icons/fa'
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faImages, faBars, faUser } from "@fortawesome/free-solid-svg-icons";
+import Image from 'next/image';
 
 const gallery = () => {
     const [data, setData] = useState('');
@@ -29,7 +30,8 @@ const gallery = () => {
                 </div>
                 <div className='px-2 py-2 flex flex-wrap items-center mx-auto'>
                     {data.length >0 ? data.map((item, key) => (
-                        <div key={key} className='transition duration-150 mx-auto my-2 w-72 ease-linear hover:scale-105 rounded-2xl'><img className='h-96 rounded-2xl w-full' src={item.img_url} /><h3 className='text-[#8c8c8e] text-sm'>{item.dateTime}</h3><span>gallery id : {item.gallery_id}</span></div>
+                        <div key={key} className='transition duration-150 mx-auto my-2 w-72 ease-linear hover:scale-105 rounded-2xl'><img className='h-96 rounded-2xl w-full' src={item.img_url} alt='childrens' /><h3 className='text-[#8c8c8e] text-sm'>{item.dateTime}</h3><span>gallery id : {item.gallery_id}</span></div>
+
                     )) : <div className='p-5 text-center w-full '>
                         <h1 className='text-center text-7xl'><FontAwesomeIcon icon={faImages} /></h1>
                         <h1 className='text-center text-2xl mt-5'>Oops!! No Gallerys</h1>

@@ -9,10 +9,20 @@ const handler = async (req, res) => {
          res.status(401).json({ error: "Gallery_id already exists" });
       }
       else {
+         const currentdates = new Date();
+         const times = currentdates.toLocaleString("en-us", {
+           hour12: true,
+           weekday: "short",
+           day: "2-digit",
+           hour: "2-digit",
+           minute: "2-digit",
+           month: "long",
+           year: "numeric",
+         });
          let g = new Gallery({
             "gallery_id": req.body.id,
             "img_url": req.body.image,
-            "dateTime": req.body.date
+            "dateTime": times
          })
          console.log(req.body);
          await g.save();
