@@ -99,8 +99,8 @@ const index = () => {
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/faq') }}>
-                            <h1 className='text-center text-xl font-medium'>Feedbacks</h1>
-                            <h1 className='text-center mt-2'>{fcount ? fcount : "No Feeds"}</h1>
+                            <h1 className='text-center text-xl font-medium'>FAQ</h1>
+                            <h1 className='text-center mt-2'>{fcount ? fcount : "No Queries"}</h1>
                         </div>
 
                         <div className='transition duration-300 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg p-5 m-3 rounded ease-linear hover:scale-105 cursor-pointer' onClick={() => { router.push('/admin/hftdonations') }}>

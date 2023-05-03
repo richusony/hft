@@ -155,7 +155,7 @@ const Login = () => {
                         <div className="text-white border mx-auto w-fit text-xl text-center rounded p-2 mb-3 md:w-40 md:m-auto">
                             <h2 className='text-center mx-auto'>Google Login</h2>
                         </div>
-                        <h2 className="text-white text-center text-sm mt-3">Not a memeber? <Link href='/create-account' className='hover:underline'>Register now</Link></h2>
+                        <h2 className="text-white text-center text-sm mt-3">Not a member? <Link href='/create-account' className='hover:underline'>Register now</Link></h2>
                     </div>
                     <div className={`py-3 px-9 w-40 ${loading ? "" : "hidden"} bg-black`}>
                         <h1 className='text-white text-center'>Loading...</h1>
