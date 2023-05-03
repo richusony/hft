@@ -30,84 +30,97 @@ const create_account = () => {
 
         const handleSubmit = async (e) => {
 
-            e.preventDefault()
-
+            e.preventDefault();
             const validEmail = email.match(
                 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             );
-            if (!name) {
-                toast.warning('Enter the Name!', {
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+
+            if (password) {
+                if (password.length < 8) {
+                    errorPassword = 'Minimum 8 characters required.';
+                } else if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/])[0-9a-zA-Z!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/]{8,}$/
+                )) {
+                    errorPassword = 'combination of Number uppercase lowercase letter special character required.';
+                } else {
+                    errorPassword = '';
+                }
             }
-            else if (!email) {
-                toast.warning('Fill all the details!', {
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
-            }
-            else if (!password) {
-                toast.warning('Enter the Password!', {
-                    position: "bottom-left",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
-            }
-            else if (password.length < 8) {
-                errorPassword = 'Minimum 8 characters required.';
-            } else if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/])[0-9a-zA-Z!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/]{8,}$/
-            )) {
-                errorPassword = 'combination of Number uppercase lowercase letter special character required.';
+            if (!name || !validEmail || !password || errorPassword != '') {
+
+                if (!name) {
+                    toast.warning('Enter the Name!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
+                else if (!email) {
+                    toast.warning('Enter email!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
+                else if (!password) {
+                    toast.warning('Enter the Password!', {
+                        position: "bottom-left",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+                }
+                else if (password.length < 8) {
+                    errorPassword = 'Minimum 8 characters required.';
+                } else if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/])[0-9a-zA-Z!@#$%^&*()_+~\-={}\[\]|\\:;"'<>,.?\/]{8,}$/
+                )) {
+                    errorPassword = 'combination of Number uppercase lowercase letter special character required.';
+                } else {
+                    errorPassword = "";
+                }
+
+                if (!validEmail || errorPassword) {
+
+                    if (!validEmail) {
+                        email ?
+                            toast.warning('Invalid Email', {
+                                position: "bottom-left",
+                                autoClose: 3000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "dark",
+                            }) : "";
+                    }
+                    if (errorPassword) {
+                        toast.warning(errorPassword, {
+                            position: "bottom-left",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "dark",
+                        });
+                    }
+                }
             } else {
-                errorPassword = '';
-            }
-
-            if (!validEmail || errorPassword) {
-
-                if (!validEmail) {
-                    toast.warning('Invalid Email', {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
-                }
-                if (errorPassword) {
-                    toast.warning(errorPassword, {
-                        position: "bottom-left",
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
-                }
-            }
-            else {
                 console.log('Sending')
                 let data = {
                     name,
@@ -205,5 +218,6 @@ const create_account = () => {
         )
     }
 }
+
 
 export default create_account;

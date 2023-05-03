@@ -88,7 +88,7 @@ const Adlogin = () => {
 
                 }
                 if (res.status === 401) {
-                    toast.error('User does not exists!', {
+                    toast.error('Admin not found!', {
                         position: "bottom-left",
                         autoClose: 3000,
                         hideProgressBar: false,
