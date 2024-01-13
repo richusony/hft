@@ -45,7 +45,7 @@ const Donation = ({ keys }) => {
             <div className='w-full md:flex md:flex-wrap p-3'>
                 {data.map((item, key) => (<div key={key} className='mx-auto mb-5 w-72 bg-[#d2d0d2] rounded-[14px] p-2'>
                     <div className='w-full'>
-                        {item.img_url ? <img src={item.img_url} width={1080} height={1080} className='rounded w-72 h-80' alt='child-profile' /> : <img src={'https://cdn.onlinewebfonts.com/svg/img_218090.png'} className='rounded mx-auto border p-2 w-30 h-56' alt='child-profile' />}
+                        {item.img_url ? <img src={item.img_url} width={1080} height={1080} className='rounded w-72 h-80 object-cover' alt='child-profile' /> : <img src={'https://cdn.onlinewebfonts.com/svg/img_218090.png'} className='rounded mx-auto border p-2 w-30 h-56' alt='child-profile' />}
                     </div>
                     <div className='p-2 rounded-[4px]'>
                         <h2 className='font-medium text-center text-2xl'>{item.stu_name ? item.stu_name : "John Wick"}</h2>

@@ -70,7 +70,7 @@ const Map = () => {
       <>
       <div className='h-4/5'>
         <form className='flex justify-between mb-3'>
-          <h2 className='text-white font-mediium text-sm md:text-2xl'>Locate Us <FontAwesomeIcon icon={faLocationDot} /></h2>
+          <h2 className='text-gray-400 font-medium text-sm md:text-xl'>Locate Us <FontAwesomeIcon icon={faLocationDot} /></h2>
           <div className='flex'>
             <input type="text" placeholder='Search' className='px-1 rounded' value={place} onChange={handleInputChange} />
             <button className='transition duration-150 px-2 md:px-4 text-sm text-white rounded ml-1 bg-blue-500 ease-in hover:bg-blue-800' onClick={search}>Search</button>

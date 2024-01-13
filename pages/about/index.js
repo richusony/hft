@@ -16,7 +16,7 @@ const about = () => {
     return (
         <>
             <div className='overflow-hidden'>
-                <div className='py-32 bg-cover bg-about-bg text-center '>
+                <div className='py-32 bg-cover bg-about-bg text-center object-cover'>
                     <h1 className='text-white text-4xl md:text-5xl font-medium font-sans'>Our Mission</h1>
                     <h2 className='text-white text-sm md:text-xl font-medium font-sans mt-2'>It is every child’s right to
                         receive the love, care and attention of their family, community, or even a stranger.</h2>
@@ -34,7 +34,7 @@ const about = () => {
             </div>
 
             <div className="px-2 md:flex md:px-4 ">
-                <div className='md:w-[600px] rounded-[5%] shadow-2xl'><Image src={child} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear' /></div>
+                <div className='md:w-[600px] rounded-[5%] shadow-2xl'><Image src={child} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear object-cover' /></div>
                 <div className='mt-10 md:w-1/2 text-center flex justify-center align-middle px-3'><p className=' text-xl m-auto'>The uplifting story about this young girl serves as an inspiration
                     for us and a display of gratitude on the part of the community for
                     extending our support. As Meryl Streep defined it, “The great gift
@@ -59,7 +59,7 @@ const about = () => {
                     of human beings is that we have the power of empathy.” Please help
                     Orphan Life Foundation use the power of empathy along with YOUR
                     GRATITUDE to make the lives of these orphans and abandoned children better.</p></div>
-                <div className='md:w-[600px] mt-10 rounded-[5%] shadow-2xl'><Image src={child2} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear' /></div>
+                <div className='md:w-[600px] mt-10 rounded-[5%] shadow-2xl'><Image src={child2} width={0} height={0} alt='child' className='transition duration-300 w-full h-full rounded-[5%] grayscale hover:grayscale-0 hover:scale-105 ease-linear object-cover' /></div>
             </div>
 
             <div className='text-center px-3 h-auto my-20'>

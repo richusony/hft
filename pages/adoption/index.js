@@ -93,7 +93,7 @@ const adoption = () => {
                     pauseOnHover
                     theme=""
                 />
-                <div className='w-full text-center bg-cover font-bold flex justify-center items-center bg-family md:bg-family2 shadow-2xl bg-fixed px-5 md:py-60 py-80 rounded-b-lg'>
+                <div className='w-full text-center bg-cover font-bold flex justify-center items-center bg-family md:bg-family2 shadow-2xl bg-fixed px-5 md:py-60 py-80 rounded-b-lg object-cover'>
                     <h1 className='transition duration-150 text-5xl text-white tracking-wide font-semibold ease-linear'><span className='text-[#ff6600]'>Every child </span>deserves home and<br /> love period</h1>
                 </div>
                 {/* <div className='w-full text-center rounded-b-3xl flex justify-center items-center'>

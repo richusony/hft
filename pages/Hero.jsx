@@ -11,7 +11,7 @@ const Hero = () => {
     return (
         <>
             <div className='overflow-hidden'>
-                <div className='py-32 bg-cover bg-bgimg text-center bg-fixed'>
+                <div className='py-32 bg-cover bg-bgimg text-center bg-fixed object-cover'>
                     <h1 className='text-white text-4xl md:text-5xl font-bold font-sans'>Hope For Tomorrow</h1>
                     <h2 className='text-white text-sm md:text-xl font-semibold font-sans mt-2'>A family for every child in our lifetime.</h2>
                 </div>
@@ -26,16 +26,16 @@ const Hero = () => {
             </div>
             <div className='p-5 md:flex'>
                 <div className='p-10 text-center md:w-1/3'>
-                    <Image src={child} width={0} height={0} className='m-auto w-24' alt='child-photo' />
-                    <h3 className='text-xl md:text-2xl'>18 million children live on streets in India</h3>
+                    <Image src={child} width={0} height={0} className='m-auto w-24 object-cover' alt='child-photo' />
+                    <h3 className='text-xl text-gray-500 md:text-2xl'>18 million children live on streets in India</h3>
                 </div>
                 <div className='p-10 text-center md:w-1/3'>
-                    <Image src={cl} width={0} height={0} className='m-auto w-24' alt='child-photo' />
-                    <h3 className='text-xl md:text-2xl'>10.1 million childrens under child labour</h3>
+                    <Image src={cl} width={0} height={0} className='m-auto w-24 object-cover' alt='child-photo' />
+                    <h3 className='text-xl text-gray-500 md:text-2xl'>10.1 million childrens under child labour</h3>
                 </div>
                 <div className='p-10 text-center md:w-1/3'>
-                    <Image src={heart} width={0} height={0} className='m-auto w-24' alt='child-photo' />
-                    <h3 className='text-xl md:text-2xl'>69% of childrens died due to malnutrition and malnourishment</h3>
+                    <Image src={heart} width={0} height={0} className='m-auto w-20 object-cover' alt='child-photo' />
+                    <h3 className='text-xl text-gray-500 md:text-2xl'>69% of childrens died due to malnutrition and malnourishment</h3>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@ const Hero = () => {
                 </div>
             </div> */}
 
-            <div className='bg-slate-400  h-3/4 p-2 map'>
+            <div className='bg-slate-100 shadow-xl h-3/4 p-2 map rounded-xl'>
                <div className='w-full h-screen'><Map /></div> 
             </div>
         </>
